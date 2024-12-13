@@ -13,7 +13,7 @@ author = 'OpenTPS team'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx_gallery.gen_gallery','sphinx_togglebutton','sphinx_examples']
+extensions = ['sphinx_book_theme','sphinx_gallery.gen_gallery']
 
 sphinx_gallery_conf = {
      'examples_dirs': '../../examples',   # path to your example scripts
@@ -33,7 +33,7 @@ html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
 html_theme_options = { "repository_url": "https://github.com/OpenTPS/examples",
                        "repository_branch": "master",
-                       "path_to_docs": "docs",
+                       "path_to_docs": "./docs",
                         "launch_buttons":{
                             "binderhub_url": "https://mybinder.org",
                             "colab_url": "https://colab.research.google.com/",
@@ -45,4 +45,14 @@ html_theme_options = { "repository_url": "https://github.com/OpenTPS/examples",
                        "use_download_button": True,
                        "use_fullscreen_button":False,
                        }
-
+sphinx_gallery_conf = {
+    'examples_dirs': '../../examples',  # path to your example scripts
+    'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
+    'binder': {
+        'org': 'OpenTPS',  # Your GitHub organization or username
+        'repo': 'examples',  # Repository name
+        'branch': 'master',  # Branch where the examples are hosted
+        'binderhub_url': 'https://mybinder.org',  # Binder service URL
+        'dependencies': '../../requirements.txt',  # Path to a requirements file for Binder
+    },
+}

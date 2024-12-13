@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_auto_examples_DoseOptimizationRealPatient.py>`
-        to download the full example code.
+        to download the full example code. or to run this example in your browser via Binder
 
 .. rst-class:: sphx-glr-example-title
 
@@ -61,6 +61,13 @@ I am writing stuff
 .. only:: html
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
+
+    .. container:: binder-badge
+
+      .. image:: images/binder_badge_logo.svg
+        :target: https://mybinder.org/v2/gh/OpenTPS/examples/master?filepath=notebooks/auto_examples/DoseOptimizationRealPatient.ipynb
+        :alt: Launch binder
+        :width: 150 px
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
