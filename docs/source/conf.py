@@ -25,6 +25,22 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 
+sphinx_gallery_conf = {
+    'examples_dirs': '../../examples',         # Path to your Python example scripts
+    'gallery_dirs': 'auto_examples',     # Path to the output rendered gallery
+    'filename_pattern': r'\.py',         # Regex to include `.py` files
+    'remove_config_comments': True,
+    'binder': {
+        'org': 'OpenTPS',                # Your GitHub organization/user
+        'repo': 'examples',              # Your GitHub repository
+        'branch': 'main',                # Branch containing the notebooks
+        'binderhub_url': 'https://colab.research.google.com/github',  # Colab URL
+        'notebooks_dir': '../../../auto_notebooks',    # Path to the notebook folder
+        'dependencies': '../../requirements.txt',  # Path to a requirements file
+    }
+}
+
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -38,21 +54,9 @@ html_theme_options = { "repository_url": "https://github.com/OpenTPS/examples",
                             "binderhub_url": "https://mybinder.org",
                             "colab_url": "https://colab.research.google.com/",
                             "deepnote_url": "https://deepnote.com/",
-                            "notebook_interface": "jupyterlab",
                         },
                        "use_issues_button": True,
                        "use_repository_button": True,
                        "use_download_button": True,
                        "use_fullscreen_button":False,
                        }
-sphinx_gallery_conf = {
-    'examples_dirs': '../../examples',  # path to your example scripts
-    'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
-    'binder': {
-        'org': 'OpenTPS',  # Your GitHub organization or username
-        'repo': 'examples',  # Repository name
-        'branch': 'master',  # Branch where the examples are hosted
-        'binderhub_url': 'https://mybinder.org',  # Binder service URL
-        'dependencies': '../../requirements.txt',  # Path to a requirements file for Binder
-    },
-}

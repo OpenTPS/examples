@@ -56,6 +56,24 @@ I am writing stuff
     ctCalibration = readScanner(DoseCalculationConfig().scannerFolder)
     bdl = mcsquareIO.readBDL(DoseCalculationConfig().bdlFile)
 
+.. rst-class:: sphx-glr-script-out
+
+.. code-block:: pytb
+
+    Traceback (most recent call last):
+      File "C:\Users\eliot\OneDrive - UCL\OpenTPS\examples\examples\DoseOptimizationRealPatient.py", line 18, in <module>
+        from opentps.core.data.plan import PlanDesign
+    ImportError: cannot import name 'PlanDesign' from 'opentps.core.data.plan' (C:\Users\eliot\OneDrive - UCL\OpenTPS\OpenTPS\opentps_core\opentps\core\data\plan\__init__.py)
+
+
+
+
+
+.. rst-class:: sphx-glr-timing
+
+   **Total running time of the script:** (0 minutes 2.395 seconds)
+
+
 .. _sphx_glr_download_auto_examples_DoseOptimizationRealPatient.py:
 
 .. only:: html
@@ -65,7 +83,7 @@ I am writing stuff
     .. container:: binder-badge
 
       .. image:: images/binder_badge_logo.svg
-        :target: https://mybinder.org/v2/gh/OpenTPS/examples/master?filepath=notebooks/auto_examples/DoseOptimizationRealPatient.ipynb
+        :target: https://colab.research.google.com/github/v2/gh/OpenTPS/examples/main?filepath=../../../auto_notebooks/auto_examples/DoseOptimizationRealPatient.ipynb
         :alt: Launch binder
         :width: 150 px
 
