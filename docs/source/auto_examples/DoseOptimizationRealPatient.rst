@@ -71,7 +71,7 @@ I am writing stuff
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.395 seconds)
+   **Total running time of the script:** (0 minutes 2.316 seconds)
 
 
 .. _sphx_glr_download_auto_examples_DoseOptimizationRealPatient.py:
@@ -83,7 +83,7 @@ I am writing stuff
     .. container:: binder-badge
 
       .. image:: images/binder_badge_logo.svg
-        :target: https://colab.research.google.com/github/v2/gh/OpenTPS/examples/main?filepath=../../../auto_notebooks/auto_examples/DoseOptimizationRealPatient.ipynb
+        :target: https://colab.research.google.com/github/v2/gh/OpenTPS/examples/blob/main?filepath=../../../auto_notebooks/auto_examples/DoseOptimizationRealPatient.ipynb
         :alt: Launch binder
         :width: 150 px
 

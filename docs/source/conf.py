@@ -34,7 +34,6 @@ sphinx_gallery_conf = {
         'org': 'OpenTPS',                # Your GitHub organization/user
         'repo': 'examples',              # Your GitHub repository
         'branch': 'main',                # Branch containing the notebooks
-        'binderhub_url': 'https://colab.research.google.com/github',  # Colab URL
         'notebooks_dir': '../../../auto_notebooks',    # Path to the notebook folder
         'dependencies': '../../requirements.txt',  # Path to a requirements file
     }

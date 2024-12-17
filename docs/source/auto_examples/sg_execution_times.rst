@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:02.395** total execution time for 1 file **from auto_examples**:
+**00:02.316** total execution time for 1 file **from auto_examples**:
 
 .. container::
 
@@ -33,5 +33,5 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_DoseOptimizationRealPatient.py` (``DoseOptimizationRealPatient.py``)
-     - 00:02.395
+     - 00:02.316
      - 0.0
