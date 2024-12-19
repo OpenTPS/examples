@@ -17,8 +17,6 @@ extensions = [
     'sphinx_gallery.gen_gallery',
 ]
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 from sphinx_gallery.sorting import FileNameSortKey
 
@@ -29,8 +27,8 @@ sphinx_gallery_conf = {
     'within_subsection_order': FileNameSortKey,
     # Add a Colab badge
     'binder': {
-        'org': 'github',
-        'repo': 'username/repo',  # Replace with your GitHub repository
+        'org': 'OpenTPS',
+        'repo': 'examples/blob',  # Replace with your GitHub repository
         'branch': 'main',
         'binderhub_url': 'https://colab.research.google.com/github',
         'dependencies': 'requirements.txt',
