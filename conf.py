@@ -27,10 +27,10 @@ sphinx_gallery_conf = {
     'within_subsection_order': FileNameSortKey,
     # Add a Colab badge
     'binder': {
-        'org': 'OpenTPS',
-        'repo': 'examples/blob',  # Replace with your GitHub repository
-        'branch': 'main',
-        'binderhub_url': 'https://colab.research.google.com/github',
+        'org': '',
+        'repo': '',  # Replace with your GitHub repository
+        'branch': '',
+        'binderhub_url': 'https://colab.research.google.com/github/OpenTPS/examples/blob/main/',
         'dependencies': 'requirements.txt',
         'notebooks_dir': 'notebooks',
         'use_jupyter_lab': False,
