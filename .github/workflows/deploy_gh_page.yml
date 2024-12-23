@@ -27,11 +27,15 @@ jobs :
         run: |
           make html
       - name: Upload artifacts
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: html
-          path: |
-            _build/html
+          name: github-pages
+          path: _build/html
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: /home/runner/work/_temp/artifact.tar
 
   deploy:
     needs: build
@@ -41,4 +45,5 @@ jobs :
         uses: actions/deploy-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_build/html
+          branch: gh-pages
+          artifact_name: github-pages
