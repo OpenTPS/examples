@@ -58,18 +58,19 @@ data-bs-placement="bottom" data-bs-toggle="tooltip">
 
   // Get the forelast word (second to last part of the path)
   var forelastWord = pathParts[pathParts.length - 2];
+  var foreforelastWord = pathParts[pathParts.length - 3];
 
   // Get the current file name and replace ".html" with ".ipynb"
   var fileName = pathParts.pop().replace('.html', '.ipynb');
 
   // Check if the forelast word is 'auto_examples'
-  if (forelastWord === 'auto_examples'&& fileName !== 'index.ipynb') {
+  if (foreforelastWord === 'auto_examples'&& fileName !== 'index.ipynb') {
     // Show the button
     var colabButton = document.getElementById('colab-button');
     colabButton.style.display = 'inline-block';
 
     // Update the Colab link
     var colabLink = document.getElementById('colab-link');
-    colabLink.href = "https://colab.research.google.com/github/OpenTPS/examples/blob/main/" + forelastWord + "/" + fileName;
+    colabLink.href = "https://colab.research.google.com/github/OpenTPS/examples/blob/main/" + foreforelastWord + "/" + forelastWord + "/" + fileName;
   }
 </script>
