@@ -40,5 +40,4 @@ jobs :
         uses: actions/deploy-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
           artifact_name: github-pages
