@@ -27,7 +27,7 @@ jobs :
         run: |
           make html
       - name: Upload artifacts
-        uses: actions/upload-package-artifact@v2
+        uses: actions/upload-page-artifact@v2
         with:
           name: html
           path: |
