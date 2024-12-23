@@ -31,11 +31,6 @@ jobs :
         with:
           name: github-pages
           path: _build/html
-      - name: upload-artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: /home/runner/work/_temp/artifact.tar
 
   deploy:
     needs: build
