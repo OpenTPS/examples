@@ -6,6 +6,9 @@ on :
       - main
 
 jobs :
+  permissions:
+    id-token: write
+    pages: write
   build:
     runs-on: ubuntu-latest
     steps:
