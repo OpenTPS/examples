@@ -32,7 +32,6 @@ jobs :
           name: html
           path: |
             _build/html
-            auto_examples
 
   deploy:
     needs: build
