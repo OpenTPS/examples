@@ -25,16 +25,6 @@ sphinx_gallery_conf = {
     'examples_dirs': 'examples',  # Path to your example scripts
     'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
     'within_subsection_order': FileNameSortKey,
-    # Add a Colab badge
-    'binder': {
-        'org': '',
-        'repo': '',  # Replace with your GitHub repository
-        'branch': '',
-        'binderhub_url': 'https://colab.research.google.com/github/OpenTPS/examples/blob/main/',
-        'dependencies': 'requirements.txt',
-        'notebooks_dir': 'notebooks',
-        'use_jupyter_lab': False,
-    },
 }
 
 # -- Options for HTML output -------------------------------------------------
@@ -42,3 +32,9 @@ sphinx_gallery_conf = {
 
 html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
+templates_path = ['_templates']
+
+html_theme_options = {
+    'repository_url': 'https://github.com/OpenTPS/examples',
+    "article_header_end": "my_header.html",
+}
