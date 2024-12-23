@@ -26,6 +26,7 @@ jobs :
       - name: Build the docs
         run: |
           make html
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: html
