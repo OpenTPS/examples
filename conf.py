@@ -18,13 +18,10 @@ extensions = [
 ]
 
 
-from sphinx_gallery.sorting import FileNameSortKey
-
 sphinx_gallery_conf = {
     # Path to your examples directory
-    'examples_dirs': ['examples'],  # Path to your example scripts
+    'examples_dirs': 'examples',  # Path to your example scripts
     'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
-    'within_subsection_order': FileNameSortKey,
 }
 
 # -- Options for HTML output -------------------------------------------------

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.000** total execution time for 2 files **from all galleries**:
+**00:00.595** total execution time for 3 files **from all galleries**:
 
 .. container::
 
@@ -32,9 +32,12 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_DoseOptimizationRealPatient.py` (``examples\DoseOptimizationRealPatient.py``)
+   * - :ref:`sphx_glr_auto_examples_examples2_plot_testExample.py` (``examples\examples2\plot_testExample.py``)
+     - 00:00.595
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_examples1_DoseOptimizationRealPatient.py` (``examples\examples1\DoseOptimizationRealPatient.py``)
      - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_testExample.py` (``examples\testExample.py``)
+   * - :ref:`sphx_glr_auto_examples_examples2_test_output.py` (``examples\examples2\test_output.py``)
      - 00:00.000
      - 0.0
