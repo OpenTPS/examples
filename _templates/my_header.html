@@ -1,0 +1,75 @@
+<div class="header-article-items__end">
+
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<button class="btn btn-sm" id="colab-button" style="display: none;"
+data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="btn__icon-container">
+    <a id="colab-link" href="#" target="_blank" style="color: inherit;">
+      <i class="fa-brands fa-google"></i>
+    </a>
+  </span>
+</button>
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+
+
+
+            </div>
+
+<script>
+  // Get the path parts from the current URL
+  var pathParts = window.location.pathname.split('/');
+
+  // Get the forelast word (second to last part of the path)
+  var forelastWord = pathParts[pathParts.length - 2];
+
+  // Get the current file name and replace ".html" with ".ipynb"
+  var fileName = pathParts.pop().replace('.html', '.ipynb');
+
+  // Check if the forelast word is 'auto_examples'
+  if (forelastWord === 'auto_examples'&& fileName !== 'index.ipynb') {
+    // Show the button
+    var colabButton = document.getElementById('colab-button');
+    colabButton.style.display = 'inline-block';
+
+    // Update the Colab link
+    var colabLink = document.getElementById('colab-link');
+    colabLink.href = "https://colab.research.google.com/github/OpenTPS/examples/blob/main/" + forelastWord + "/" + fileName;
+  }
+</script>
