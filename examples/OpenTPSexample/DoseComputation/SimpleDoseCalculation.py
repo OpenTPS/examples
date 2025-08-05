@@ -11,16 +11,6 @@ import numpy as np
 import os
 from matplotlib import pyplot as plt
 import math
-from opentps.core.data.images import CTImage
-from opentps.core.data.images import ROIMask
-from opentps.core.data.plan import PlanDesign
-from opentps.core.data import DVH
-from opentps.core.data import Patient
-from opentps.core.io import mcsquareIO
-from opentps.core.io.scannerReader import readScanner
-from opentps.core.processing.doseCalculation.doseCalculationConfig import DoseCalculationConfig
-from opentps.core.processing.doseCalculation.protons.mcsquareDoseCalculator import MCsquareDoseCalculator
-from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D,resampleImage3D
 
 #%%
 #import the needed opentps.core packages
@@ -72,7 +62,8 @@ data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[65:85, 65:85, 65:85] = True
 roi.imageArray = data
 
-#%%Configuration of MCsquare
+#%%
+# Configuration of MCsquare
 #---------------------------
 #to configure Mcsquare we need to calibrate it with the CT calibration obtained above
 
@@ -81,7 +72,8 @@ mc2.beamModel = bdl
 mc2.ctCalibration = ctCalibration
 mc2.nbPrimaries = 1e7
 
-#%%Plan Creation
+#%%
+# Plan Creation
 #---------------
 #we will now create a plan and create one beam
 
@@ -105,7 +97,8 @@ planDesign.targetMargin = 5.0
 plan = planDesign.buildPlan()  # Spot placement
 plan.PlanName = "NewPlan"
 
-#%%Center of mass
+#%%
+# Center of mass
 #----------------
 #Here we look at the part of the 3D CT image where "stuff is happening" by getting the CoM. We use the function resampleImage3DOnImage3D to the same array size for both images.
 
