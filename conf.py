@@ -35,4 +35,5 @@ templates_path = ['_templates']
 html_theme_options = {
     'repository_url': 'https://github.com/OpenTPS/examples',
     "article_header_end": "my_header.html",
+    "show_nav_level": 2,
 }
