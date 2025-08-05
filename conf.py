@@ -22,6 +22,7 @@ sphinx_gallery_conf = {
     # Path to your examples directory
     'examples_dirs': 'examples',  # Path to your example scripts
     'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
+    'nested_sections': True,  # Allow nested sections in the examples
 }
 
 # -- Options for HTML output -------------------------------------------------
