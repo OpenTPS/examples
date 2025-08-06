@@ -83,7 +83,6 @@ plt.text(5,100,"Water",color = 'white')
 plt.text(106,111,"TV",color ='red')
 plt.savefig(os.path.join(output_path,'beamFree1.png'),format = 'png')
 plt.show()
-plt.close()
 
 #%%
 #Configuration of Mcsquare
@@ -130,7 +129,7 @@ plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMIN, 20.0,
 #%%
 #Mcsquare beamlet free planOptimization
 #--------------------------------------
-#Now that we have every needed objects we can compute the optimization through MCsquare.:warning: It may take some time to compute.
+#Now that we have every needed objects we can compute the optimization through MCsquare. :warning: It may take some time to compute.
 
 doseImage = mc2.optimizeBeamletFree(ct, plan, [roi])
 
@@ -179,8 +178,8 @@ plt.grid(True)
 plt.legend()
 plt.savefig(os.path.join(output_path,'beamFree2.png'),format = 'png')
 plt.show()
-plt.close()
 
+#%%
 print('D95 = ' + str(target_DVH.D95) + ' Gy')
 print('D5 = ' + str(target_DVH.D5) + ' Gy')
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
