@@ -9,8 +9,6 @@ OpenTPS CORE : Real case optimization
 #I am writing stuff
 ##############################################
 
-#import
-
 import numpy as np
 import os
 from matplotlib import pyplot as plt
