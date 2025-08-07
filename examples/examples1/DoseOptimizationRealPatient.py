@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 
 #Import the needed opentps.core packages
 
-from opentps.core.data.plan import PlanDesign
+from opentps.core.data.plan import ProtonPlanDesign
 from opentps.core.data import DVH
 from opentps.core.io import mcsquareIO
 from opentps.core.io.scannerReader import readScanner

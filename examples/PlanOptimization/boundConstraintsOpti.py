@@ -31,7 +31,7 @@ if "google.colab" in sys.modules:
 from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 from opentps.core.data.plan import ObjectivesList
-from opentps.core.data.plan import PlanDesign
+from opentps.core.data.plan import ProtonPlanDesign
 from opentps.core.data import DVH
 from opentps.core.data import Patient
 from opentps.core.data.plan import FidObjective
@@ -115,7 +115,7 @@ if os.path.isfile(plan_file):
     plan = loadRTPlan(plan_file)
     logger.info('Plan loaded')
 else:
-    planInit = PlanDesign()
+    planInit = ProtonPlanDesign()
     planInit.ct = ct
     planInit.gantryAngles = gantryAngles
     planInit.beamNames = beamNames
