@@ -24,6 +24,8 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
     'filename_pattern': '.*',  # Pattern to match example files
     'nested_sections': True,  # Allow nested sections in the examples
+    "ignore_pattern": "SimpleOptimizationProton|SimpleOptimizationPhoton"
+
 }
 
 # -- Options for HTML output -------------------------------------------------

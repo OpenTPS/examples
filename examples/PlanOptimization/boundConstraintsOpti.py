@@ -46,8 +46,9 @@ from opentps.core.processing.planOptimization.planOptimization import BoundConst
 logger = logging.getLogger(__name__)
 
 #%%
-
 #Output path
+#-----------
+#We will create an output folder to store the results of this example
 output_path = 'Output'
 if not os.path.exists(output_path):
     os.makedirs(output_path)
