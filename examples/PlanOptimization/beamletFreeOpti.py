@@ -37,6 +37,15 @@ from opentps.core.processing.doseCalculation.protons.mcsquareDoseCalculator impo
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
 
 #%%
+#Output path
+#-----------
+
+output_path = 'Output'
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+
+
+#%%
 #Generic CT creation
 #-------------------
 #we will first create a generic CT of a box fill with water and air
@@ -75,14 +84,6 @@ roi.color = (255, 0, 0) # red
 data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
-
-#%%
-#Output path
-#-----------
-
-output_path = 'Output'
-if not os.path.exists(output_path):
-    os.makedirs(output_path)
 
 image = plt.imshow(ct.imageArray[110,:,:],cmap='Blues')
 plt.colorbar(image)
