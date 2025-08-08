@@ -12,6 +12,10 @@ import os
 from matplotlib import pyplot as plt
 import math
 
+import opentps
+from opentps.core.utils.programSettings import ProgramSettings
+config = ProgramSettings()
+config.workspace = "/Users/romane/Documents/MIRO/workspace"
 # %% [skip]
 # installing opentps in colab
 import sys

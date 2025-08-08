@@ -2,3 +2,4 @@ matplotlib
 numpy
 opentps
 scipy
+psutil
