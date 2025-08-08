@@ -4,6 +4,16 @@ Simple IMPT photon plan optimization
 In this example, we will create and optimize a simple Photons plan.
 '''
 
+# %% [skip]
+# installing opentps in colab
+import sys
+if "google.colab" in sys.modules:
+    from IPython import get_ipython
+    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
+    get_ipython().system('pip install ./opentps')
+    import opentps
+
+#%%
 #imports
 
 import os
@@ -14,14 +24,6 @@ import sys
 import copy
 from scipy.sparse import csc_matrix
 sys.path.append('..')
-
-# %% [skip]
-import sys
-if "google.colab" in sys.modules:
-    from IPython import get_ipython
-    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git /content/opentps_lib')
-    get_ipython().system('pip install /content/opentps_lib')
-    import opentps
 
 
 #%%

@@ -6,6 +6,16 @@ This function allows optimization with constraints on the Monitor Unit (MU) valu
 It helps to stay as close as possible to reality when certain machines cannot accept MU/spot values that are too high or too low.
 '''
 
+# %% [skip]
+# installing opentps in colab
+import sys
+if "google.colab" in sys.modules:
+    from IPython import get_ipython
+    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
+    get_ipython().system('pip install ./opentps')
+    import opentps
+
+#%%
 #imports
 
 import math
@@ -15,15 +25,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 import sys
 sys.path.append('..')
-
-# %% [skip]
-# installing opentps in colab
-import sys
-if "google.colab" in sys.modules:
-    from IPython import get_ipython
-    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git /content/opentps_lib')
-    get_ipython().system('pip install /content/opentps_lib')
-    import opentps
 
 #%%
 #import the needed opentps.core packages

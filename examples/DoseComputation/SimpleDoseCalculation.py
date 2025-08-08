@@ -5,6 +5,15 @@ Simple dose computation
 In this example we are going to create a generic CT and use the MCsquare dose calculator to compute the dose image
 '''
 
+# %% [skip]
+# installing opentps in colab
+import sys
+if "google.colab" in sys.modules:
+    from IPython import get_ipython
+    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
+    get_ipython().system('pip install ./opentps')
+    import opentps
+#%%
 #imports
 
 import numpy as np
@@ -12,18 +21,6 @@ import os
 from matplotlib import pyplot as plt
 import math
 
-import opentps
-from opentps.core.utils.programSettings import ProgramSettings
-config = ProgramSettings()
-config.workspace = "/Users/romane/Documents/MIRO/workspace"
-# %% [skip]
-# installing opentps in colab
-import sys
-if "google.colab" in sys.modules:
-    from IPython import get_ipython
-    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git /content/opentps_lib')
-    get_ipython().system('pip install /content/opentps_lib')
-    import opentps
 #%%
 #import the needed opentps.core packages
 
