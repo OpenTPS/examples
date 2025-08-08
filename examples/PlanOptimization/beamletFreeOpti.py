@@ -1,3 +1,4 @@
+# sphinx_gallery_thumbnail_number = 2
 '''
 Beamlet Free Optimization
 =========================
@@ -189,8 +190,3 @@ plt.grid(True)
 plt.legend()
 plt.savefig(os.path.join(output_path,'beamFree2.png'),format = 'png')
 plt.show()
-
-#%%
-print('D95 = ' + str(target_DVH.D95) + ' Gy')
-print('D5 = ' + str(target_DVH.D5) + ' Gy')
-print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
