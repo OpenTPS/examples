@@ -25,6 +25,7 @@ jobs :
           pip install sphinx sphinx-gallery sphinx-book-theme
           git clone https://gitlab.com/openmcsquare/opentps.git
           pip install ./opentps
+          pip install scipy==1.10.1
       - name: Build the docs
         run: |
           make html
