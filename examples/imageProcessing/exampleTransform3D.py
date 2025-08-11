@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 #----------------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleTransform3D')
 if not os.path.exists(output_path):
-        os.makedirs(output_path, 'exampleTransform3D')
+        os.makedirs(output_path)
 logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
