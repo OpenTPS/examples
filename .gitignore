@@ -3,5 +3,6 @@ _build
 auto_examples/**
 !auto_examples/**/*.ipynb
 !auto_examples/**/
+examples/**/output/
 
 .idea
