@@ -27,6 +27,8 @@ jobs :
           git clone https://gitlab.com/openmcsquare/opentps.git
           pip install ./opentps
           pip install scipy==1.10.1
+          pip install cupy-cuda12x
+
       - name: Build the docs
         run: |
           make html
