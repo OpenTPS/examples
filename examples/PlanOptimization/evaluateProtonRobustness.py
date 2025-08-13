@@ -101,7 +101,6 @@ if os.path.isfile(plan_file):
     print('Plan loaded')
 else:
     print("You need to design and optimize a plan first - See SimpleOptimization or robustOptimization script.")
-    exit()
 
 #%%
 # Load / Generate scenarios
