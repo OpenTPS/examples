@@ -24,7 +24,7 @@ sphinx_gallery_conf = {
     'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
     'filename_pattern': '.*',  # Pattern to match example files
     'nested_sections': True,  # Allow nested sections in the examples
-    #"ignore_pattern": "exampleInterFractionChanges|PlanDeliverySimulation|simpleOptimization_createDicomStudy|cupyVSsitkTransform|exampleDRRwithTigre|exampleTransform3DCupy",
+    "ignore_pattern": "PlanDeliverySimulation|simpleOptimization_createDicomStudy|exampleDRRwithTigre|createDynamic3DModelFromDicomFields|create3DSeqFromDicom|create|crop|exampleImageResampling|generateDRRAndGTVMasks",
 
 }
 
