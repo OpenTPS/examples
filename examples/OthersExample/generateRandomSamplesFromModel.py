@@ -31,7 +31,7 @@ from opentps.core.processing.deformableDataAugmentationToolBox.generateRandomSam
 
 #%%
 #Data path
-testDataPath = os.path.join(Path(os.getcwd()), 'testData/')
+testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'testData/')
 import os
 print("Current working directory:", os.getcwd())
 
