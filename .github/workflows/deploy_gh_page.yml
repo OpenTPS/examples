@@ -26,10 +26,13 @@ jobs :
           pip install -r requirements.txt
           git clone https://gitlab.com/openmcsquare/opentps.git
           pip install ./opentps
+          export CUDA_PATH=$(dirname $(dirname $(which nvcc)))
+          echo "Detected CUDA_PATH=$CUDA_PATH"
+          export PATH=$CUDA_PATH/bin:$PATH
+          export LD_LIBRARY_PATH=$CUDA_PATH/lib64:$LD_LIBRARY_PATH
+          nvcc --version
           git clone https://github.com/CERN/TIGRE.git
           pip install ./TIGRE
-          pip install -r requirements.txt
-
 
 
       - name: Build the docs

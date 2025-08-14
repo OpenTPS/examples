@@ -48,7 +48,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 #--------------------
 # Load plan
 
-plan_path = "/Users/romane/Downloads/data/structure_set.dcm" # Generate a plan and save it with writeRTPlan from dicomIO
+plan_path = "./testData/RP1.2.840.10008.5.1.4.1.1.481.8.dcm" # Generate a plan and save it with writeRTPlan from dicomIO
 plan = readDicomPlan(plan_path)
 
 #%%
