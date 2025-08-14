@@ -48,15 +48,3 @@ jobs :
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           artifact_name: github-pages
-
-stages:
-  - test
-
-tigre_test:
-  stage: test
-  image: python:3.11
-  before_script:
-    - pip install --upgrade pip setuptools wheel
-    - pip install tigre[cpu]  # CPU-only install if available
-  script:
-    - python -c "import tigre; print('Tigre version:', tigre.__version__)"
