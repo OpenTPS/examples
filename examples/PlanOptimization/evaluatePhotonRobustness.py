@@ -5,14 +5,17 @@ author: OpenTPS team
 
 This example shows how to evaluate a photon plan robustness using OpenTPS.
 '''
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%
@@ -34,6 +37,7 @@ from opentps.core.io.serializedObjectIO import saveRTPlan, loadRTPlan
 from opentps.core.processing.doseCalculation.doseCalculationConfig import DoseCalculationConfig
 from opentps.core.processing.planEvaluation.robustnessEvaluation import RobustnessEvalPhoton
 from opentps.core.processing.doseCalculation.photons.cccDoseCalculator import CCCDoseCalculator
+from opentps.core.data.plan import PhotonPlanDesign
 
 
 logger = logging.getLogger(__name__)
@@ -83,6 +87,10 @@ roi.imageArray = data
 if not os.path.isdir(output_path):
     os.mkdir(output_path)
 
+# Design plan
+beamNames = ["Beam1", "Beam2"]
+gantryAngles = [0., 90.]
+couchAngles = [0.,0]
 #%%
 # Configure MCsquare
 ccc = CCCDoseCalculator(batchSize= 30)
@@ -97,8 +105,20 @@ if os.path.isfile(plan_file):
     plan = loadRTPlan(plan_file, 'photon')
     logger.info('Plan loaded')
 else:
-    logger.info("You need to design and optimize a plan first - See SimpleOptimization or robustOptimization script.")
-
+    planDesign = PhotonPlanDesign()
+    planDesign.ct = ct
+    planDesign.targetMask = roi
+    planDesign.isocenterPosition_mm = None # None take the center of mass of the target
+    planDesign.gantryAngles = gantryAngles
+    planDesign.couchAngles = couchAngles
+    planDesign.beamNames = beamNames
+    planDesign.calibration = ctCalibration
+    planDesign.xBeamletSpacing_mm = 5
+    planDesign.yBeamletSpacing_mm = 5
+    planDesign.targetMargin = 5.0
+    planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.) 
+    
+    plan = planDesign.buildPlan() 
 #%%
 # Load / Generate scenarios
 scenario_folder = os.path.join(output_path, "RobustnessTest")

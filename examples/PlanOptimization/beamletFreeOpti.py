@@ -5,14 +5,17 @@ Beamlet Free Optimization
 
 This example will present the basis of beamlet optimization with openTPS core.
 '''
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%

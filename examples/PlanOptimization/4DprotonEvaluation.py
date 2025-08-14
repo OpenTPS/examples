@@ -5,14 +5,17 @@ author: OpenTPS team
 
 This example shows how to evaluate a 4D proton plan using OpenTPS.
 '''
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%
@@ -162,7 +165,12 @@ for i in range(0, 3):
 
 RefCT = CT4D[1]
 RefTV = ROI4D[1][0]
-
+#%%
+# Design plan
+#----------------
+beamNames = ["Beam1"]
+gantryAngles = [90.]
+couchAngles = [0.]
 #%%
 # Configure MCsquare
 #----------------------
@@ -181,7 +189,23 @@ if os.path.isfile(plan_file):
     plan = loadRTPlan(plan_file)
     logger.info('Plan weighted loaded')
 else:
-    logger.error("You need to design and optimize a plan first - See 4DrobustOptimization script.")
+    planDesign = ProtonPlanDesign()
+    planDesign.ct = RefCT # Here, it's the MidP
+    planDesign.targetMask = RefTV
+    planDesign.gantryAngles = gantryAngles
+    planDesign.beamNames = beamNames
+    planDesign.couchAngles = couchAngles
+    planDesign.calibration = ctCalibration
+
+    planDesign.spotSpacing = 6.0 
+    planDesign.layerSpacing = 6.0 
+    planDesign.targetMargin = 15 # Enough to encompass target motion
+
+    planDesign.defineTargetMaskAndPrescription(target = RefTV, targetPrescription = 60.)
+
+    plan = planDesign.buildPlan()
+    plan.rtPlanName = f"RobustPlan_4D"
+
 
 #%%
 # Load / Generate scenarios

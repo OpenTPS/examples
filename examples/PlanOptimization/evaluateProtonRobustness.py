@@ -6,14 +6,17 @@ author: OpenTPS team
 In this example, we evaluate an optimized ion plan. 
 It is possible to assess range and setup errors and generate DVHs.
 '''
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%
@@ -83,6 +86,12 @@ data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
 
 #%%
+# Design plan
+#----------------
+beamNames = ["Beam1"]
+gantryAngles = [90.]
+couchAngles = [0.]
+#%%
 # Configure MCsquare
 #---------------------
 mc2 = MCsquareDoseCalculator()
@@ -100,8 +109,21 @@ if os.path.isfile(plan_file):
     plan = loadRTPlan(plan_file)
     print('Plan loaded')
 else:
-    print("You need to design and optimize a plan first - See SimpleOptimization or robustOptimization script.")
-
+    planInit = ProtonPlanDesign()
+    planInit.ct = ct
+    planInit.gantryAngles = gantryAngles
+    planInit.beamNames = beamNames
+    planInit.couchAngles = couchAngles
+    planInit.calibration = ctCalibration
+    planInit.spotSpacing = 5.0
+    planInit.layerSpacing = 5.0
+    planInit.targetMargin = 5.0
+    planInit.setScoringParameters(scoringSpacing=[2, 2, 2], adapt_gridSize_to_new_spacing=True)
+    # needs to be called after scoringGrid settings but prior to spot placement
+    planInit.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.) 
+        
+    plan = planInit.buildPlan()  # Spot placement
+    plan.PlanName = "NewPlan"
 #%%
 # Load / Generate scenarios
 #----------------------

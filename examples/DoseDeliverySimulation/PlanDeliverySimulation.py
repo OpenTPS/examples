@@ -5,14 +5,17 @@ author: OpenTPS team
 
 This example will present the basis of plan delivery simulation with openTPS core.
 '''
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%
@@ -45,7 +48,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 #--------------------
 # Load plan
 
-plan_path = "path/to/dicom/plan" # Generate a plan and save it with writeRTPlan from dicomIO
+plan_path = "/Users/romane/Downloads/data/structure_set.dcm" # Generate a plan and save it with writeRTPlan from dicomIO
 plan = readDicomPlan(plan_path)
 
 #%%

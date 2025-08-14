@@ -26,8 +26,11 @@ jobs :
           pip install -r requirements.txt
           git clone https://gitlab.com/openmcsquare/opentps.git
           pip install ./opentps
-          pip install scipy==1.10.1
-          pip install cupy-cuda12x
+          git clone https://github.com/CERN/TIGRE.git
+          pip install ./TIGRE
+          pip install -r requirements.txt
+
+
 
       - name: Build the docs
         run: |

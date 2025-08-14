@@ -5,14 +5,17 @@ In this example, we will create and optimize a simple ion (Proton) plan.
 The generated CT, the plan, and the dose will be saved as DICOM files.
 '''
 
-# %% [skip]
-# installing opentps in colab
+#%% 
+# Setting up the environment in google collab
+#--------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('!pip install cupy-cuda12x')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
     import opentps
 
 #%%
@@ -164,6 +167,7 @@ else:
     beamlets.storeOnFS(os.path.join(output_path, "BeamletMatrix_" + plan.seriesInstanceUID + ".blm"))
     # Save plan with initial spot weights in serialized format (OpenTPS format)
     saveRTPlan(plan, plan_file)
+    writeRTPlan(plan, output_path)
 
 #%%
 #objectives
