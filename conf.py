@@ -19,14 +19,12 @@ extensions = [
 
 
 sphinx_gallery_conf = {
-    # Path to your examples directory
-    'examples_dirs': 'examples',  # Path to your example scripts
-    'gallery_dirs': 'auto_examples',  # Path where the gallery will be generated
-    'filename_pattern': '.*',  # Pattern to match example files
-    'nested_sections': True,  # Allow nested sections in the examples
-    #"ignore_pattern": "PlanDeliverySimulation|simpleOptimization_createDicomStudy|exampleDRRwithTigre|createDynamic3DModelFromDicomFields|create3DSeqFromDicom|create|crop|exampleImageResampling|generateDRRAndGTVMasks",
-
+    'examples_dirs': 'examples',       # folder containing your scripts
+    'gallery_dirs': 'auto_examples',   # folder for generated doc
+    'filename_pattern': r'run_.*\.py$',  # matches any file starting with 'run_'
+    'ignore_pattern': r'__init__\.py',   # optional: ignore __init__.py
 }
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

@@ -1,3 +1,4 @@
+# sphinx_gallery_skip_execution
 '''
 4D Proton Optimization
 =========================
