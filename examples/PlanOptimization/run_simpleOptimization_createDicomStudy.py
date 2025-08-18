@@ -50,6 +50,7 @@ from opentps.core.processing.doseCalculation.doseCalculationConfig import DoseCa
 from opentps.core.processing.doseCalculation.protons.mcsquareDoseCalculator import MCsquareDoseCalculator
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D, resampleImage3D
 from opentps.core.processing.planOptimization.planOptimization import IntensityModulationOptimizer
+from opentps.core.data.plan import ProtonPlan
 
 logger = logging.getLogger(__name__)
 
@@ -221,6 +222,11 @@ doseImage.sopInstanceUID = pydicom.uid.generate_uid()
 doseImage.studyTime = dt.strftime('%H%M%S.%f')
 doseImage.studyDate = dt.strftime('%Y%m%d')
 doseImage.SOPInstanceUID = doseImage.sopInstanceUID
+
+if not hasattr(ProtonPlan, "SOPInstanceUID"):
+    ProtonPlan.SOPInstanceUID = property(lambda self: self.sopInstanceUID)
+
+
 writeRTDose(doseImage, output_path)
 
 #%%
