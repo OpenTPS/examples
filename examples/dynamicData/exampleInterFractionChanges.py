@@ -1,13 +1,13 @@
 '''
 Inter Fraction Changes 
-=========================
+=======================
 author: OpenTPS team
 
 
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#---------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -52,7 +52,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#-----------
+#------------
 
 output_path = os.path.join(os.getcwd(), 'Output', 'exampleInterFractionChanges')
 if not os.path.exists(output_path):
@@ -61,7 +61,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # paths selection
-#--------------------
+#----------------
 organ = 'lung'
 studyFolder = 'FDGorFAZA_study/'
 patientFolder = 'Patient_4'
@@ -75,7 +75,7 @@ dataPath = basePath + organ + '/' + studyFolder + patientFolder + patientComplem
 
 #%%
 # parameters selection
-#--------------------
+#---------------------
 bodyContourToUse = 'Body'
 targetContourToUse = 'GTV T'
 lungContourToUse = 'R lung'

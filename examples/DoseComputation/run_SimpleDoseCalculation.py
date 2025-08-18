@@ -1,4 +1,3 @@
-# sphinx_gallery_thumbnail_number = 2
 '''
 Simple dose computation
 =======================
@@ -8,7 +7,7 @@ In this example we are going to create a generic CT and use the MCsquare dose ca
 
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:

@@ -1,13 +1,13 @@
 '''
 DRR with Tigre
-=========================
+==============
 author: OpenTPS team
 
 This example demonstrates how to generate Digital Reconstructed Radiographs (DRR) using the TIGRE library in OpenTPS.
 '''
 #%% 
 # setting up the environment in google colab
-#--------------
+#-------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#----------------------
+#------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleDRRwithTigre')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -46,7 +46,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # GENERATE SYNTHETIC CT IMAGE
-#----------------------
+#----------------------------
 im = np.full((170, 170, 100), -1000)
 im[20:150, 70:130, :] = 0
 im[30:70, 80:120, 20:] = -800
@@ -58,7 +58,7 @@ ct = CTImage(imageArray=im, name='fixed', origin=[0, 0, 0], spacing=[2, 2.5, 3])
 
 #%%
 # Compute projections
-#----------------------
+#--------------------
 angles = np.array([0,90,180])*2*math.pi/360
 DRR_no_noise = forwardProjectionTigre(ct, angles, axis='Z', poissonNoise=None, gaussianNoise=None)
 DRR_realistic = forwardProjectionTigre(ct, angles, axis='Z')
@@ -66,13 +66,13 @@ DRR_high_noise = forwardProjectionTigre(ct, angles, axis='Z', poissonNoise=3e4, 
 
 #%%
 # Compute error
-#----------------------
+#--------------
 error_realistic_projections = np.abs(DRR_realistic-DRR_no_noise)
 error_realistic_projections_high_noise = np.abs(DRR_high_noise-DRR_no_noise)
 
 #%%
 # Display results
-#----------------------
+#----------------
 fig, ax = plt.subplots(3, 5)
 ax[0,0].imshow(DRR_no_noise[0][::-1, ::1], cmap='gray', origin='upper', vmin=np.min(DRR_no_noise), vmax=np.max(DRR_no_noise))
 ax[0,1].imshow(DRR_realistic[0][::-1, ::1], cmap='gray', origin='upper', vmin=np.min(DRR_no_noise), vmax=np.max(DRR_no_noise))

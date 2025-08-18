@@ -7,7 +7,7 @@ author: OpenTPS team
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#---------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -35,6 +35,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
+#------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleDilateBinaryMask')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -42,6 +43,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # Create a synthetic 3D ROI mask
+#--------------------------------
 roi = ROIMask(name='TV')
 roi.color = (255, 0, 0)# red
 data = np.zeros((100, 100, 100)).astype(bool)
@@ -60,6 +62,7 @@ roi_sitk.dilateMask(radius=radius)
 
 #%%
 # Visualize the results
+#----------------------
 
 plt.figure()
 plt.subplot(2, 4, 1)

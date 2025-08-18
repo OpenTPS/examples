@@ -7,7 +7,7 @@ This example will present the basis of plan delivery simulation with openTPS cor
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -75,6 +75,7 @@ PDS.simulate4DDynamicDose()
 
 #%%
 # Simulate fractionation scenarios
+#---------------------------------
 number_of_fractions=5 # number of fractions of the plan
 number_of_starting_phases=3 # number of simulations (from a different starting phase)
 number_of_fractionation_scenarios=7 # how many scenarios we select where each scenario is a random combination with replacement

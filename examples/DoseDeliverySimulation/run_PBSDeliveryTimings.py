@@ -1,13 +1,13 @@
 '''
 PBS Delivery Timings 
-=========================
+====================
 author: OpenTPS team
 
 This example will present the basis of PBS delivery timings with openTPS core.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -54,5 +54,5 @@ plan_with_timings = bdt.getPBSTimings(sort_spots="true")
 
 #%%
 # Print plan
-#----------------
+#-----------
 print(plan_with_timings._beams[0]._layers[0].__dict__)

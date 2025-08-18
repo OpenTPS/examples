@@ -7,7 +7,7 @@ This example demonstrates how to apply a deformation to a model using weight map
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#-----------
+#------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleDeformationFromWeightMaps')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -46,7 +46,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # Generate synthetic 4DCT and MidP
-#--------------------------
+#---------------------------------
 
 # GENERATE SYNTHETIC 4D INPUT SEQUENCE
 CT4D = createSynthetic4DCT(numberOfPhases=10)
@@ -75,7 +75,7 @@ for i in range(len(trackers)):
 
 #%%
 # Display results
-#--------------------------
+#----------------
 fig, ax = plt.subplots(2, 5)
 ax[0,0].imshow(Model4D.midp.imageArray[:, 50, :].T[::-1, ::1], cmap='gray', origin='upper', vmin=-1000, vmax=1000)
 s0 = wm[0].imageArray[:, 50, :].T[::-1, ::1]

@@ -7,7 +7,7 @@ This example shows how the resampling function can be used on image3D objects.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:

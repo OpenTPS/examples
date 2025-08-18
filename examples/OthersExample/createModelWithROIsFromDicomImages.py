@@ -1,6 +1,6 @@
 '''
 Create Model with ROIs from DICOM Images
-=========================
+========================================
 author: OpenTPS team
 
 This example shows how to: 
@@ -14,7 +14,7 @@ This example shows how to:
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:

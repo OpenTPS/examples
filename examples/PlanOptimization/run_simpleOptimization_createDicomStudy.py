@@ -220,7 +220,7 @@ doseImage.mediaStorageSOPClassUID = '1.2.840.10008.5.1.4.1.1.481.2'
 doseImage.sopInstanceUID = pydicom.uid.generate_uid()
 doseImage.studyTime = dt.strftime('%H%M%S.%f')
 doseImage.studyDate = dt.strftime('%Y%m%d')
-
+doseImage.SOPInstanceUID = doseImage.sopInstanceUID
 writeRTDose(doseImage, output_path)
 
 #%%

@@ -1,13 +1,13 @@
 '''
 Cupy vs SitkTransforms
-=========================
+=======================
 author: OpenTPS team
 
 This example shows how to use the OpenTPS transforms with cupy and compare the results with the SimpleITK transforms.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#---------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -152,7 +152,7 @@ def showImagesAndFieldAndMask(fixed, movingCupy1, movingCupy3, movingSitk, field
 
 #%%
 # Test using a Transform3D
-# -----------------------------
+# ------------------------
 print('-' * 40)
 
 movingCupy1 = copy.deepcopy(fixed)
@@ -194,7 +194,7 @@ showImagesAndFieldAndMask(fixed, movingCupy1, movingCupy3, movingSitk, fieldFixe
 
 #%%
 # Test using translateData
-# -----------------------------
+# ------------------------
 print('-' * 40)
 
 movingCupy1 = copy.deepcopy(fixed)
@@ -228,7 +228,7 @@ showImagesAndFieldAndMask(fixed, movingCupy1, movingCupy3, movingSitk, fieldFixe
 
 #%%
 # Test using rotateData
-# -----------------------------
+# ---------------------
 print('-' * 40)
 
 movingCupy1 = copy.deepcopy(fixed)

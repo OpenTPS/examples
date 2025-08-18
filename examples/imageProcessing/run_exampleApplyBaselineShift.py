@@ -7,7 +7,7 @@ This example demonstrates how to apply a baseline shift to a synthetic CT image 
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#----------------------
+#-------------
 
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleApplyBasilineShift')
 if not os.path.exists(output_path):
@@ -47,7 +47,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # GENERATE SYNTHETIC CT IMAGE AND TUMOR MASK
-#----------------------
+#-------------------------------------------
 
 ct, roi = createSynthetic3DCT(returnTumorMask=True)  # roi = [45, 54], [95, 104], [30, 39]
 
@@ -60,14 +60,14 @@ ctDef3, maskDef3 = applyBaselineShift(ct, roi, [0, 0, -16])
 
 #%%
 # CHECK RESULTS
-#----------------------
+#--------------
 assert (np.all(ctDef1.imageArray[50:57, 100:107, 36:42] > -700)), f"Error for baseline shift +4,+4,+4"
 assert (np.all(ctDef2.imageArray[42:49, 92:99, 28:34] > -700)), f"Error for baseline shift -4,-4,-4"
 assert (np.all(ctDef3.imageArray[46:53, 96:103, 22:32] > -700)), f"Error for baseline shift 0,0,-16"
 
 #%%
 # DISPLAY RESULTS
-#----------------------
+#-----------------
 fig, ax = plt.subplots(2, 4)
 fig.tight_layout()
 y_slice = 100

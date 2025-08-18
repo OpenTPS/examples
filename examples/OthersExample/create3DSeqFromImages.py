@@ -1,13 +1,13 @@
 '''
 Create 3D Sequence from Images
-=========================
+==============================
 author: OpenTPS team
 
 This example shows how to read data from a 4DCT folder, create a dynamic 3D sequence with the 4DCT data, and save this sequence in serialized format on the drive.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:

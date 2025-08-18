@@ -1,13 +1,13 @@
 '''
 Applying Baseline Shift to a Model
-=========================
+==================================
 author: OpenTPS team
 
 This example demonstrates how to apply a baseline shift to a model and visualize the results.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#-----------
+#------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleApplyBaselineShiftToModel')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -48,7 +48,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # Generate synthetic 4DCT, mask, and MidP
-#--------------------------
+#----------------------------------------
 
 # GENERATE SYNTHETIC 4DCT
 CT4D = createSynthetic4DCT()
@@ -64,13 +64,13 @@ Model.computeMidPositionImage(CT4D, 0, tryGPU=True)
 
 #%%
 # Apply baseline shift
-#--------------------------
+#---------------------
 
 ModelShifted, maskShifted = applyBaselineShift(Model, roi, [5, 0, 10])
 
 #%%
 # Regenerate 4D sequences from models
-#--------------------------
+#------------------------------------
 
 CT4DRegen = Dynamic3DSequence()
 for i in range(len(CT4D.dyn3DImageList)):
@@ -81,7 +81,7 @@ for i in range(len(CT4D.dyn3DImageList)):
 
 #%%
 # Display results
-#--------------------------
+#----------------
 fig, ax = plt.subplots(3, 7)
 fig.tight_layout()
 y_slice = 95

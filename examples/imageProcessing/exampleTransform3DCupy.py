@@ -1,13 +1,13 @@
 '''
 Transform 3D Image with CuPy
-=========================
+============================
 author: OpenTPS team
 
 This example demonstrates how to apply a 3D transformation to a synthetic CT image using the OpenTPS library with CuPy for efficient computation.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#----------------------
+#-------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleTransform3DCupy')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -49,7 +49,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # GENERATE SYNTHETIC INPUT IMAGES
-#----------------------
+#--------------------------------
 fixed = CTImage()
 fixed.spacing = np.array([1, 1, 1])
 fixed.imageArray = np.full((20, 20, 20), -1000)
@@ -117,7 +117,7 @@ plt.show()
 
 #%%
 # Create a dynamic model with the transform
-#----------------------
+#------------------------------------------
 print(' --------------------- start test with model -----------------------------')
 
 CT4D = createSynthetic4DCT(numberOfPhases=4)
@@ -146,7 +146,7 @@ showModelWithAnimatedFields(movingDynMod)
 
 #%%
 #Generate synthetic input images 
-#----------------------
+#-------------------------------
 fixed = CTImage()
 fixed.imageArray = np.full((20, 20, 20), -1000)
 y_slice = 10
@@ -197,7 +197,7 @@ compZMoving = fieldMoving.imageArray[:, y_slice, :, 2]
 
 #%%
 # Display results
-#----------------------
+#----------------
 
 fig, ax = plt.subplots(1, 2)
 ax[0].imshow(fixed.imageArray[:, y_slice, :])

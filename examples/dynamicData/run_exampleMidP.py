@@ -1,13 +1,13 @@
 '''
 Midp
-=========================
+====
 author: OpenTPS team
 
 
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -38,7 +38,7 @@ from opentps.core.examples.syntheticData import *
 logger = logging.getLogger(__name__)
 #%%
 # Output path
-#-----------
+#------------
 
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleMidP')
 if not os.path.exists(output_path):
@@ -47,7 +47,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # Generate synthetic 4DCT And MidP
-#--------------------------
+#---------------------------------
 
 # GENERATE SYNTHETIC 4D INPUT SEQUENCE
 CT4D = createSynthetic4DCT()
@@ -66,7 +66,7 @@ im3 = Model4D.generate3DImage(2/4, amplitude=0.5, tryGPU=False)
 
 #%%
 # Display results
-#--------------------------
+#----------------
 
 fig, ax = plt.subplots(2, 4)
 fig.tight_layout()

@@ -7,7 +7,7 @@ This example shows how to evaluate a 4D proton plan using OpenTPS.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -182,7 +182,7 @@ mc2.ctCalibration = ctCalibration
 
 #%%
 # Load / Generate new plan
-#----------------------
+#-------------------------
 plan_file = os.path.join(output_path, f"RobustPlan_4D_weighted.tps")
 
 if os.path.isfile(plan_file):
@@ -209,7 +209,7 @@ else:
 
 #%%
 # Load / Generate scenarios
-#----------------------
+#---------------------------
 scenario_folder = os.path.join(output_path, 'Robustness4D_Test')
 if os.path.isdir(scenario_folder):
     scenarios = RobustnessEval()

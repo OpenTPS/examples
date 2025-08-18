@@ -1,13 +1,13 @@
 '''
 Transform 3D
-=========================
+============
 author: OpenTPS team
 
 This example demonstrates how to apply a 3D transformation to a synthetic CT image using the OpenTPS library.
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#----------------------
+#------------
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleTransform3D')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -49,7 +49,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # GENERATE SYNTHETIC INPUT IMAGES
-#----------------------
+#--------------------------------
 fixed = CTImage()
 fixed.imageArray = np.full((20, 20, 20), -1000)
 fixed.imageArray[11:16, 5:14, 11:14] = 100.0
@@ -116,7 +116,7 @@ plt.show()
 
 #%%
 # Create a dynamic model with the transform
-#----------------------
+#-------------------------------------------
 
 print(' --------------------- start test with model -----------------------------')
 
@@ -146,7 +146,7 @@ showModelWithAnimatedFields(movingDynMod)
 
 #%%
 # Generate synthetic input images
-#----------------------
+#---------------------------------
 fixed = CTImage()
 fixed.imageArray = np.full((20, 20, 20), -1000)
 y_slice = 10
@@ -193,7 +193,7 @@ compZMoving = fieldMoving.imageArray[:, y_slice, :, 2]
 
 #%%
 # Display results
-#----------------------
+#----------------
 fig, ax = plt.subplots(1, 2)
 ax[0].imshow(fixed.imageArray[:, y_slice, :])
 ax[0].quiver(compZFixed, compXFixed, alpha=0.5, color='red', angles='xy', scale_units='xy', scale=2, width=.010)

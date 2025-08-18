@@ -1,12 +1,12 @@
 '''
 Deformable Breathing Data Augmentation
-=========================
+======================================
 author: OpenTPS team
 
 '''
 #%% 
 # Setting up the environment in google collab
-#--------------
+#--------------------------------------------
 # First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
 import sys
 if "google.colab" in sys.modules:
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 #%%
 # Output path
-#-----------
+#------------
 
 output_path = os.path.join(os.getcwd(), 'Output', 'ExampleDeformableBreathingDataAugmentation')
 if not os.path.exists(output_path):
@@ -53,7 +53,7 @@ logger.info('Files will be stored in {}'.format(output_path))
 
 #%%
 # Generate synthetic 4DCT
-#--------------------------
+#------------------------
 
 CT4D = createSynthetic4DCT(numberOfPhases=10)
     # CT4D = resample(CT4D, gridSize=(80, 50, 50))
@@ -71,7 +71,7 @@ plt.show()
 
 #%%
 # Generate MidP
-#--------------------------
+#--------------
 
 dynMod = Dynamic3DModel()
 dynMod.computeMidPositionImage(CT4D, 0, tryGPU=True)
