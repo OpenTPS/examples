@@ -3,13 +3,13 @@ Simple dose computation and optimization on a real CT image
 ===========================================================
 author: Eliot Peeters
 
-In this example we are going to see how to :
-- Import real dicom images and RT struct
-- Create a plan
-- Compute beamlets
-- Optimize a plan with beamlets
-- Save a plan and beamlets
-- Compute DVH histograms
+In this example we are going to see how to :  
+- Import real dicom images and RT struct  
+- Create a plan  
+- Compute beamlets  
+- Optimize a plan with beamlets  
+- Save a plan and beamlets  
+- Compute DVH histograms  
 '''
 
 #%% 
