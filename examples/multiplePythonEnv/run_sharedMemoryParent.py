@@ -31,13 +31,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import subprocess
 from multiprocessing import shared_memory
+from pathlib import Path
 
 from opentps.core.examples.syntheticData import createSynthetic3DCT
 
 #%%
 # set the child script environnement path and child scrip file path
-script2EnvPath = 'python.exe'  ## example: 'C:/Users/johnsmith/anaconda3/envs/myEnv/python.exe
-script2Path = 'sharedMemoryChild.py'
+script2EnvPath = sys.executable  # absolute path to current python
+script2Path = str(Path(__file__).parent / "sharedMemoryChild.py")
 
 #%%
 # create test image to share between scripts
@@ -62,7 +63,7 @@ plt.show()
 
 #%%
 # Call to child script
-subprocess.call(script2EnvPath + ' ' + script2Path)
+subprocess.call([script2EnvPath, script2Path])
 
 #%%
 # Copy shared memory space to test image array

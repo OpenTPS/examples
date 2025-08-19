@@ -39,14 +39,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 from multiprocessing import shared_memory
 from subprocess import Popen, PIPE
+from pathlib import Path
+import subprocess
 
 from opentps.core.examples.syntheticData import createSynthetic3DCT
 
 #%%
 # Set the child script environnement path and child scrip file path
-childEnvPath = 'python.exe'  ## example: 'C:/Users/johnsmith/anaconda3/envs/myEnv/python.exe
-childScriptPath = 'backAndForthChild.py'
-
+childEnvPath = sys.executable  # absolute path to current python
+childScriptPath = str(Path(__file__).parent / "backAndForthChild.py")
 #%%
 # Create test image to share between scripts
 ct = createSynthetic3DCT()
@@ -70,7 +71,8 @@ plt.show()
 
 #%%
 # Launch child process
-process = Popen(childEnvPath + ' ' + childScriptPath, stdin=PIPE, stdout=PIPE, encoding='utf-8', text=True)#, universal_newlines=True, shell=True)
+process = Popen([childEnvPath, childScriptPath],
+                stdin=PIPE, stdout=PIPE, encoding='utf-8', text=True)
 
 #%%
 # Send the command 'init' to second process

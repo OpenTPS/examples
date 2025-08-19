@@ -33,10 +33,10 @@ if __name__ == "__main__":
 
     print("Start script 2")
     existing_shm = shared_memory.SharedMemory(name='sharedArray')
-    ## !!! if you do not pass the image size and data type as argument to the child script, it must be known here
-    arrayInScript2 = np.ndarray((170, 170, 100), dtype=int, buffer=existing_shm.buf)
-    processImage(arrayInScript2)
-
-    ## Delete array and close shared memory when finished
-    del arrayInScript2
-    existing_shm.close()
+    try:
+        # Must match parent array shape and dtype
+        arrayInScript2 = np.ndarray((170, 170, 100), dtype=np.int64, buffer=existing_shm.buf)
+        processImage(arrayInScript2)
+    finally:
+        del arrayInScript2
+        existing_shm.close()
