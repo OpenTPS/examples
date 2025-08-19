@@ -47,7 +47,7 @@ from opentps.core.examples.syntheticData import createSynthetic3DCT
 #%%
 # Set the child script environnement path and child scrip file path
 childEnvPath = sys.executable  # absolute path to current python
-childScriptPath = str(Path(__file__).parent / "backAndForthChild.py")
+childScriptPath = str(Path.cwd() / "backAndForthChild.py")
 #%%
 # Create test image to share between scripts
 ct = createSynthetic3DCT()

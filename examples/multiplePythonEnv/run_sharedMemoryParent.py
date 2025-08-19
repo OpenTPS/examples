@@ -38,7 +38,7 @@ from opentps.core.examples.syntheticData import createSynthetic3DCT
 #%%
 # set the child script environnement path and child scrip file path
 script2EnvPath = sys.executable  # absolute path to current python
-script2Path = str(Path(__file__).parent / "sharedMemoryChild.py")
+script2Path = str(Path.cwd() / "sharedMemoryChild.py")
 
 #%%
 # create test image to share between scripts
