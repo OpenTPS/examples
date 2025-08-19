@@ -1,6 +1,23 @@
-"""
-This script is the child script that goes with the sharedMemoryParent.py example
-"""
+'''
+Shared Memory child 
+===================
+author: OpenTPS team
+
+This script is the child script that will be launched by the parent script.
+'''
+#%% 
+# Setting up the environment in google collab
+#--------------------------------------------
+# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
+import sys
+if "google.colab" in sys.modules:
+    from IPython import get_ipython
+    get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
+    get_ipython().system('pip install ./opentps')
+    get_ipython().system('pip install scipy==1.10.1')
+    get_ipython().system('pip install cupy-cuda12x')
+    import opentps
+
 #%%
 import numpy as np
 from multiprocessing import shared_memory
