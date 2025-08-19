@@ -119,6 +119,9 @@ process.stdout.close()
 #%%
 # Close the shared memory
 shm.close()
-shm.unlink()
+try:
+    shm.unlink()
+except FileNotFoundError:
+    print("Shared memory already unlinked, skipping.")
 
 print('End of script 1')

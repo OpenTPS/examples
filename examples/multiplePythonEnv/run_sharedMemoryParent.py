@@ -79,7 +79,11 @@ plt.show()
 #%%
 # Close the shared memory
 shm.close()
-shm.unlink()
+try:
+    shm.unlink()
+except FileNotFoundError:
+    print("Shared memory already unlinked, skipping.")
+
 
 
 
