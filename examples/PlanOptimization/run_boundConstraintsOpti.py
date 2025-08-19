@@ -1,6 +1,8 @@
 '''
 Bound Constraint Optimization
 =============================
+author: OpenTPS team
+
 In this example, we optimize an ion plan (Protons) using the BoundConstraintsOptimizer function.
 This function allows optimization with constraints on the Monitor Unit (MU) values of each spot.
 It helps to stay as close as possible to reality when certain machines cannot accept MU/spot values that are too high or too low.

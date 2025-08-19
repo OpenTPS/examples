@@ -1,6 +1,8 @@
 '''
 Simple ion plan optimization and DICOM study creation
-====================================
+=====================================================
+author: OpenTPS team
+
 In this example, we will create and optimize a simple ion (Proton) plan. 
 The generated CT, the plan, and the dose will be saved as DICOM files.
 '''

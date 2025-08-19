@@ -3,7 +3,7 @@ Midp
 ====
 author: OpenTPS team
 
-
+This example shows how to create a mid-position CT from a 4DCT and visualize it.
 '''
 #%% 
 # Setting up the environment in google collab

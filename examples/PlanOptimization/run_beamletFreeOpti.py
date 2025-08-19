@@ -1,6 +1,7 @@
 '''
 Beamlet Free Optimization
 =========================
+author: OpenTPS team
 
 This example will present the basis of beamlet optimization with openTPS core.
 '''

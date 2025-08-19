@@ -3,7 +3,7 @@ Inter Fraction Changes
 =======================
 author: OpenTPS team
 
-
+This example shows how to apply inter-fraction changes to a dynamic 3D model, including baseline shift, translation, rotation, and shrinkage of the target organ.
 '''
 #%% 
 # Setting up the environment in google collab

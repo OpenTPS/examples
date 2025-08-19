@@ -1,6 +1,8 @@
 '''
 Simple IMPT photon plan optimization
 ====================================
+author: OpenTPS team
+
 In this example, we will create and optimize a simple Photons plan.
 '''
 

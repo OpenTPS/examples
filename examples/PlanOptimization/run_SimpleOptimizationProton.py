@@ -1,6 +1,8 @@
 '''
 Simple IMPT proton plan optimization
 ====================================
+author: OpenTPS team
+
 In this example, we will create and optimize a simple Protons plan.
 '''
 #%% 

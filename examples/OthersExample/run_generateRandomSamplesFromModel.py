@@ -35,7 +35,7 @@ from opentps.core.processing.deformableDataAugmentationToolBox.generateRandomSam
 
 #%%
 #Data path
-testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'opentps/testData/')
+testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'testData/')
 
 #%%
 # read a serialized dynamic sequence
