@@ -85,7 +85,6 @@ plan2 = loadRTPlan(os.path.join(output_path,'dummy_plan.tps'))
 print(plan2[0].layers[1].spotWeights)
 print(plan[0].layers[1].spotWeights)
 
-#%%
 # Load DICOM plan
 #dicomPath = os.path.join(Path(os.getcwd()).parent.absolute(),'opentps','testData','Phantom')
 #print(dicomPath)
@@ -107,6 +106,8 @@ doseCalculator.nbPrimaries = 1e7
 #%%
 # Generic example: box of water with spherical target
 #----------------------------------------------------
+
+
 # Load CT & contours
 # ct = [d for d in dataList if isinstance(d, CTImage)][0]
 # struct = [d for d in dataList if isinstance(d, RTStruct)][0]

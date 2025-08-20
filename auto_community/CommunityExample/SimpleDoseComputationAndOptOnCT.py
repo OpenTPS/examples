@@ -4,6 +4,7 @@ Simple dose computation and optimization on a real CT image
 author: Eliot Peeters
 
 In this example we are going to see how to :  
+
 - Import real dicom images and RT struct  
 - Create a plan  
 - Compute beamlets  
@@ -93,10 +94,11 @@ mc2.ctCalibration = ctCalibration
 #%%
 #Plan design
 #-----------
-#In the next section we create a planDesign object with 3 beams (of no medical relevance, we just use them for demonstration). There are multiple parameters which can affect computation time :
-# -targetMargin : a higher margin will increase the time used to dilate the mask
-# -spotSpacing : a lower spot spacing will result in more beamlets therefore longer beamlets calculation time
-# -layerSpacing : a lower layer spacing will result in more beamlets therefore longer beamlets calculation time
+#
+# In the next section we create a planDesign object with 3 beams (of no medical relevance, we just use them for demonstration). There are multiple parameters which can affect computation time :
+# * targetMargin : a higher margin will increase the time used to dilate the mask
+# * spotSpacing : a lower spot spacing will result in more beamlets therefore longer beamlets calculation time
+# * layerSpacing : a lower layer spacing will result in more beamlets therefore longer beamlets calculation time
 
 # Design plan
 beamNames = ["Beam1","Beam2","Beam3"]
