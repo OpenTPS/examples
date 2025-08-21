@@ -4,6 +4,7 @@ DRR with Tigre
 author: OpenTPS team
 
 This example demonstrates how to generate Digital Reconstructed Radiographs (DRR) using the TIGRE library in OpenTPS.
+
 running time: ~ 10 minutes
 '''
 #%% 

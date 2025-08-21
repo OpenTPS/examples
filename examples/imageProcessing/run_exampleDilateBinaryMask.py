@@ -4,6 +4,7 @@ Dilate Binary Mask
 author: OpenTPS team
 
 This example shows how to dilate a binary mask using the OpenTPS library.
+
 running time: ~ 5 minutes
 '''
 #%% 

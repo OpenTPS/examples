@@ -4,6 +4,7 @@ Generate random samples from a model
 author: OpenTPS team
 
 This example demonstrates how to generate random samples from a model using OpenTPS.
+
 running time: ~ 5 minutes
 '''
 #%% 

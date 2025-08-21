@@ -4,6 +4,7 @@ Image Resampling
 author: OpenTPS team
 
 This example shows how the resampling function can be used on image3D objects.
+
 running time: ~ 10 minutes
 '''
 #%% 

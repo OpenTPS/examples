@@ -4,6 +4,7 @@ Cupy vs SitkTransforms
 author: OpenTPS team
 
 This example shows how to use the OpenTPS transforms with cupy and compare the results with the SimpleITK transforms.
+
 running time: ~ 5 minutes
 '''
 #%% 

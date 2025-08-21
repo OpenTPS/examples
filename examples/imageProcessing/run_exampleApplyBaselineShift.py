@@ -4,6 +4,7 @@ Applying Baseline Shift
 author: OpenTPS team
 
 This example demonstrates how to apply a baseline shift to a synthetic CT image and its corresponding tumor mask using the OpenTPS library. The example generates a synthetic 3D CT image, applies different baseline shifts, and visualizes the results.
+
 running time: ~ 5 minutes
 '''
 #%% 

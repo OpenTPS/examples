@@ -4,6 +4,7 @@ Create Dynamic 3D Model from DICOM Fields
 author: OpenTPS team
 
 This example shows how to read a DICOM CT and deformation fields, create a dynamic 3D model with the mid-position CT and the deformation fields, and print the model information.
+
 running time: ~ 5 minutes
 '''
 #%% 

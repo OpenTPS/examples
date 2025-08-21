@@ -4,6 +4,7 @@ Proton Plan Creation and Dose Calculation
 author: OpenTPS team
 
 This example demonstrates how to create a proton plan and perform dose calculation using OpenTPS.
+
 running time: ~ 5 minutes
 '''
 #%% 

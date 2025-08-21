@@ -4,6 +4,7 @@ Deformable Breathing Data Augmentation
 author: OpenTPS team
 
 This example shows how to create a synthetic 4DCT, generate a mid-position CT, and create a dynamic sequence from breathing signals and the mid-position CT. The example also demonstrates how to visualize the generated dynamic sequence.
+
 running time: ~ 7 minutes
 '''
 #%% 
