@@ -4,6 +4,7 @@ Applying Baseline Shift to a Model
 author: OpenTPS team
 
 This example demonstrates how to apply a baseline shift to a model and visualize the results.
+running time: ~ 5 minutes
 '''
 #%% 
 # Setting up the environment in google collab

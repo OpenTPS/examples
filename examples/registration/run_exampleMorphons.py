@@ -4,6 +4,7 @@ Morphons Registration
 author: OpenTPS team
 
 This example will present the basis of morphons registration with openTPS core.
+running time: ~ 5 minutes
 '''
 #%% 
 # Setting up the environment in google collab

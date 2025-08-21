@@ -4,6 +4,7 @@ Deformation from Weight Maps
 author: OpenTPS team
 
 This example demonstrates how to apply a deformation to a model using weight maps and visualize the results.
+running time: ~ 7 minutes
 '''
 #%% 
 # Setting up the environment in google collab

@@ -11,6 +11,8 @@ Key features:
 - The parent script launches a child script which use a different python environnement
 - Share RAM memory space between 2 scripts without the need to save and load data on/from hard drives.
 
+running time: ~ 5 minutes
+
 '''
 #%% 
 # Setting up the environment in google collab

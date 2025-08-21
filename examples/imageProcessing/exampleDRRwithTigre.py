@@ -4,6 +4,7 @@ DRR with Tigre
 author: OpenTPS team
 
 This example demonstrates how to generate Digital Reconstructed Radiographs (DRR) using the TIGRE library in OpenTPS.
+running time: ~ 10 minutes
 '''
 #%% 
 # setting up the environment in google colab
@@ -14,10 +15,10 @@ if "google.colab" in sys.modules:
     from IPython import get_ipython
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
-    get_ipython().system('pip install scipy==1.10.1')
     get_ipython().system('pip install cupy-cuda12x')
     get_ipython().system('git clone https://github.com/CERN/TIGRE.git')
     get_ipython().system('pip install ./TIGRE')
+    get_ipython().system('pip install scipy==1.10.1')
     import opentps
     
 #%%

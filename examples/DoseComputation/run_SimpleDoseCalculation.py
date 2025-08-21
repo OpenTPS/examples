@@ -4,6 +4,7 @@ Simple dose computation
 author: OpenTPS team
 
 In this example we are going to create a generic CT and use the MCsquare dose calculator to compute the dose image
+running time: ~ 7 minute
 '''
 
 #%% 

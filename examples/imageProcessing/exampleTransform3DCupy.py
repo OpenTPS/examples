@@ -4,6 +4,7 @@ Transform 3D Image with CuPy
 author: OpenTPS team
 
 This example demonstrates how to apply a 3D transformation to a synthetic CT image using the OpenTPS library with CuPy for efficient computation.
+running time: ~ 5 minutes
 '''
 #%% 
 # Setting up the environment in google collab

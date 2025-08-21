@@ -18,6 +18,7 @@ Key features:
 - Use of multiple python envs in communicating scripts.
 - Share RAM memory space between 2 scripts without the need to save and load data on/from hard drives.
 - The possibility to initialise first, then later in the parent script, use the AI model.
+running time: ~ 5 minutes
 
 '''
 #%% 

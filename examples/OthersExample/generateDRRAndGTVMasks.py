@@ -10,6 +10,8 @@ This example shows how to:
 -
 
 !!! does not work with public data for now since there is no struct in the public data !!!
+
+running time: ~ 10 minutes
 '''
 #%% 
 # Setting up the environment in google collab

@@ -11,6 +11,8 @@ This example shows how to:
 - create a patient, give him the model and rtStruct and save it as serialized data  
 !!! does not work with public data for now since there is no struct in the public data !!!
 
+running time: ~ 10 minutes
+
 '''
 #%% 
 # Setting up the environment in google collab

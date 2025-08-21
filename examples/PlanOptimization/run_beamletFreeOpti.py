@@ -4,6 +4,7 @@ Beamlet Free Optimization
 author: OpenTPS team
 
 This example will present the basis of beamlet optimization with openTPS core.
+running time: ~ 15 minutes
 '''
 #%% 
 # Setting up the environment in google collab

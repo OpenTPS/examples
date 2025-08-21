@@ -4,6 +4,7 @@ Photon Plan Creation and Dose Calculation
 author: OpenTPS team
 
 This example demonstrates how to create a photon plan and perform dose calculation using OpenTPS.
+running time: ~ 10 minutes
 '''
 #%% 
 # Setting up the environment in google collab

@@ -10,6 +10,8 @@ This example shows how to:
 - Get the ROI as an ROIMask
 - Get the box around the ROI in scanner coordinates
 - Crop the dynamic sequence and the dynamic model around the box
+
+running time: ~ 10 minutes
 '''
 #%% 
 # Setting up the environment in google collab

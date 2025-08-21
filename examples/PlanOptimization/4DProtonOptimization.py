@@ -214,7 +214,7 @@ else:
     planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.REDUCED_SET # RANDOM not available for MCsquareSystematic
     # planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.ALL (includes diagonals on sphere)
     # planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.RANDOM
-    # planDesign.robustness.numScenarios = 50 # Specify how many random scenarios to simulate, default = 100
+    planDesign.robustness.numScenarios = 50 # Specify how many random scenarios to simulate, default = 100
 
     # # 4D settings : only for the mode MCsquareAccumulation with the RANDOM strategie
     # planDesign.robustness.Create4DCTfromRef = True

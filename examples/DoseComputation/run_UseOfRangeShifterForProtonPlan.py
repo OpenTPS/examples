@@ -4,6 +4,7 @@ Use of Range Shifter for Proton Plan
 author: OpenTPS team
 
 In this example, we will show how to create a plan from scratch and use range shifters.
+running time: ~ 10 minutes
 '''
 #%% 
 # Setting up the environment in google collab

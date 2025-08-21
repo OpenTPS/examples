@@ -4,6 +4,7 @@ Create 3D Sequence from Images
 author: OpenTPS team
 
 This example shows how to read data from a 4DCT folder, create a dynamic 3D sequence with the 4DCT data, and save this sequence in serialized format on the drive.
+running time: ~ 10 minutes
 '''
 #%% 
 # Setting up the environment in google collab

@@ -4,6 +4,7 @@ Evaluate Photon Plan Robustness
 author: OpenTPS team
 
 This example shows how to evaluate a photon plan robustness using OpenTPS.
+running time: ~ 15 minutes
 '''
 #%% 
 # Setting up the environment in google collab

@@ -5,6 +5,7 @@ author: OpenTPS team
 
 In this example, we evaluate an optimized ion plan. 
 It is possible to assess range and setup errors and generate DVHs.
+running time: ~ 4 hours
 '''
 #%% 
 # Setting up the environment in google collab
@@ -151,7 +152,7 @@ else:
 
     # Random scenario sampling  
     plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.RANDOM
-    plan.planDesign.robustnessEval.nScenarios = 30 # specify how many random scenarios to simulate, default = 100
+    plan.planDesign.robustnessEval.numScenarios = 30 # specify how many random scenarios to simulate, default = 100
     
     plan.patient = None
     # run MCsquare simulation

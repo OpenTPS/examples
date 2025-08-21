@@ -4,6 +4,7 @@ Simple IMPT proton plan optimization
 author: OpenTPS team
 
 In this example, we will create and optimize a simple Protons plan.
+running time: ~ 12 minutes
 '''
 #%% 
 # Setting up the environment in google collab
