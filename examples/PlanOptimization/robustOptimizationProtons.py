@@ -5,6 +5,8 @@ author: OpenTPS team
 
 In this example, we create and optimize a robust proton plan. 
 The setup and range errors are configurable.
+
+running time: ~ 3 hours
 '''
 #%% 
 # Setting up the environment in google collab
@@ -138,7 +140,7 @@ else:
 
     # Random scenario sampling  
     # planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.RANDOM
-    # planDesign.robustness.numScenarios = 5 # specify how many random scenarios to simulate, default = 100
+    planDesign.robustness.numScenarios = 5 # specify how many random scenarios to simulate, default = 100
 
     planDesign.spotSpacing = 7.0
     planDesign.layerSpacing = 6.0

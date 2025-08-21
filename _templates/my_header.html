@@ -64,7 +64,7 @@ data-bs-placement="bottom" data-bs-toggle="tooltip">
   var fileName = pathParts.pop().replace('.html', '.ipynb');
 
   // Check if the forelast word is 'auto_examples'
-  if (foreforelastWord === 'auto_examples'&& fileName !== 'index.ipynb') {
+  if ((foreforelastWord === 'auto_examples'||foreforelastWord === 'auto_community')&& fileName !== 'index.ipynb') {
     // Show the button
     var colabButton = document.getElementById('colab-button');
     colabButton.style.display = 'inline-block';

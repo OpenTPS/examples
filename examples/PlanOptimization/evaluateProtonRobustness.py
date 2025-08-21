@@ -6,7 +6,7 @@ author: OpenTPS team
 In this example, we evaluate an optimized ion plan. 
 It is possible to assess range and setup errors and generate DVHs.
 
-running time: ~ 4 hours
+running time: ~ 2 hours
 '''
 #%% 
 # Setting up the environment in google collab

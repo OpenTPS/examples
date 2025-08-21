@@ -4,6 +4,8 @@
 author: OpenTPS team
 
 This example shows how to create and optimize a 4D proton plan using OpenTPS.
+
+running time: ~ 7 hours
 '''
 #%% 
 # Setting up the environment in google collab

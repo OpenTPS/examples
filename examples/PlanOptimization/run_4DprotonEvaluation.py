@@ -4,6 +4,8 @@
 author: OpenTPS team
 
 This example shows how to evaluate a 4D proton plan using OpenTPS.
+
+running time: ~ 20 minutes
 '''
 #%% 
 # Setting up the environment in google collab
@@ -248,7 +250,7 @@ else:
 
     # Random scenario sampling  
     # plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.RANDOM
-    # plan.planDesign.robustnessEval.numScenarios = 50 # Specify how many random scenarios to simulate, default = 100
+    plan.planDesign.robustnessEval.numScenarios = 50 # Specify how many random scenarios to simulate, default = 100
     
     # Run MCsquare simulation
     scenarios = mc2.compute4DRobustScenario(CT4D, plan = plan, refIndex = 1, roi = ROI4D) # 4D method
