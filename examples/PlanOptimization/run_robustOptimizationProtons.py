@@ -6,7 +6,7 @@ author: OpenTPS team
 In this example, we create and optimize a robust proton plan. 
 The setup and range errors are configurable.
 
-running time: ~ 3 hours
+running time: ~ 20 minutes
 '''
 #%% 
 # Setting up the environment in google collab
@@ -108,7 +108,7 @@ if not os.path.isdir(output_path):
 #---------------------
 mc2 = MCsquareDoseCalculator()
 mc2.beamModel = bdl
-mc2.nbPrimaries = 5e4
+mc2.nbPrimaries = 1e3
 mc2.ctCalibration = ctCalibration
 
 #%%
@@ -188,7 +188,7 @@ print('D5 = ' + str(target_DVH.D5) + ' Gy')
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
 
 #%%
-# center of mass
+# Center of mass
 #----------------------
 roi = resampleImage3DOnImage3D(roi, ct)
 COM_coord = roi.centerOfMass

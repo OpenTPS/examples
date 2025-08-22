@@ -33,14 +33,14 @@ from opentps.core.data.dynamicData._dynamic3DModel import Dynamic3DModel
 
 #%%
 # Load DICOM CT
-inputPaths = f"/data/MidP_ct/"
+inputPaths = 'Path_to_your_CT_data/'  # replace with the path to your CT data folder
 dataList = readData(inputPaths, maxDepth=0)
 midP = dataList[0]
 print(type(midP))
 
 #%%
 # Load DICOM Deformation Fields
-inputPaths = f"/data/deformation_fields/"
+inputPaths = 'Path_to_your_deformation_fields/'  # replace with the path to your deformation fields folder
 defList = readData(inputPaths, maxDepth=0)
 
 #%%

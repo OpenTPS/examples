@@ -178,7 +178,7 @@ couchAngles = [0.]
 #----------------------
 mc2 = MCsquareDoseCalculator()
 mc2.beamModel = bdl
-mc2.nbPrimaries = 5e4
+mc2.nbPrimaries = 1e3
 mc2.statUncertainty = 2.
 mc2.ctCalibration = ctCalibration
 
@@ -199,9 +199,9 @@ else:
     planDesign.couchAngles = couchAngles
     planDesign.calibration = ctCalibration
 
-    planDesign.spotSpacing = 6.0 
-    planDesign.layerSpacing = 6.0 
-    planDesign.targetMargin = 15 # Enough to encompass target motion
+    planDesign.spotSpacing = 7.0 
+    planDesign.layerSpacing = 7.0 
+    planDesign.targetMargin = 10 # Enough to encompass target motion
 
     planDesign.defineTargetMaskAndPrescription(target = RefTV, targetPrescription = 60.)
 

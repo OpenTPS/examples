@@ -5,7 +5,7 @@ author: OpenTPS team
 
 This example shows how to create and optimize a 4D proton plan using OpenTPS.
 
-running time: ~ 7 hours
+running time: ~ 1 hours
 '''
 #%% 
 # Setting up the environment in google collab
@@ -185,7 +185,7 @@ couchAngles = [0.]
 #----------------------
 mc2 = MCsquareDoseCalculator()
 mc2.beamModel = bdl
-mc2.nbPrimaries = 5e4
+mc2.nbPrimaries = 1e3
 mc2.ctCalibration = ctCalibration
 
 #%%
@@ -227,9 +227,9 @@ else:
     # planDesign.robustness.RandomPeriodError = 5.0 # %
     # planDesign.robustness.Breathing_period = 1  # x100%    # default value
 
-    planDesign.spotSpacing = 6.0 
-    planDesign.layerSpacing = 6.0 
-    planDesign.targetMargin = 15 # Enough to encompass target motion
+    planDesign.spotSpacing = 10.0 
+    planDesign.layerSpacing = 10.0 
+    planDesign.targetMargin = 7 # Enough to encompass target motion
 
     planDesign.defineTargetMaskAndPrescription(target = RefTV, targetPrescription = 60.)
 

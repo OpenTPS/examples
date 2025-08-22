@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**02:00.150** total execution time for 44 files **from all galleries**:
+**00:14.683** total execution time for 44 files **from all galleries**:
 
 .. container::
 
@@ -32,68 +32,38 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleDeformableBreathigDataAugmentation.py` (``examples/dynamicData/run_exampleDeformableBreathigDataAugmentation.py``)
-     - 00:31.036
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleDeformationFromWeightMaps.py` (``examples/dynamicData/run_exampleDeformationFromWeightMaps.py``)
-     - 00:25.801
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleApplyBaselineShiftToModel.py` (``examples/dynamicData/run_exampleApplyBaselineShiftToModel.py``)
-     - 00:11.942
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_run_generateRandomSamplesFromModel.py` (``examples/OthersExample/run_generateRandomSamplesFromModel.py``)
-     - 00:11.594
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleMidP.py` (``examples/dynamicData/run_exampleMidP.py``)
-     - 00:09.600
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleTransform3D.py` (``examples/imageProcessing/run_exampleTransform3D.py``)
-     - 00:09.244
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleApplyBaselineShift.py` (``examples/imageProcessing/run_exampleApplyBaselineShift.py``)
-     - 00:03.717
-     - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_SimpleDoseCalculation.py` (``examples/DoseComputation/run_SimpleDoseCalculation.py``)
-     - 00:03.088
+     - 00:02.595
      - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_simpleOptimization_createDicomStudy.py` (``examples/PlanOptimization/run_simpleOptimization_createDicomStudy.py``)
-     - 00:02.427
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationProton.py` (``examples/PlanOptimization/run_SimpleOptimizationProton.py``)
-     - 00:02.203
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_boundConstraintsOpti.py` (``examples/PlanOptimization/run_boundConstraintsOpti.py``)
-     - 00:02.175
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_4DprotonEvaluation.py` (``examples/PlanOptimization/run_4DprotonEvaluation.py``)
-     - 00:01.672
+     - 00:02.053
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_UseOfRangeShifterForProtonPlan.py` (``examples/DoseComputation/run_UseOfRangeShifterForProtonPlan.py``)
-     - 00:01.598
+     - 00:02.005
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_boundConstraintsOpti.py` (``examples/PlanOptimization/run_boundConstraintsOpti.py``)
+     - 00:01.844
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationProton.py` (``examples/PlanOptimization/run_SimpleOptimizationProton.py``)
+     - 00:01.842
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_4DprotonEvaluation.py` (``examples/PlanOptimization/run_4DprotonEvaluation.py``)
+     - 00:01.376
      - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_beamletFreeOpti.py` (``examples/PlanOptimization/run_beamletFreeOpti.py``)
-     - 00:01.384
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_evaluatePhotonRobustness.py` (``examples/PlanOptimization/run_evaluatePhotonRobustness.py``)
-     - 00:00.581
+     - 00:01.193
      - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationPhoton.py` (``examples/PlanOptimization/run_SimpleOptimizationPhoton.py``)
-     - 00:00.580
+     - 00:00.533
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_evaluatePhotonRobustness.py` (``examples/PlanOptimization/run_evaluatePhotonRobustness.py``)
+     - 00:00.528
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_protonPlanCreationAndDoseCalculation.py` (``examples/DoseComputation/run_protonPlanCreationAndDoseCalculation.py``)
-     - 00:00.554
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_multiplePythonEnv_run_backAndForthParent.py` (``examples/multiplePythonEnv/run_backAndForthParent.py``)
-     - 00:00.463
+     - 00:00.445
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_photonPlanCreationAndDoseCalculation.py` (``examples/DoseComputation/run_photonPlanCreationAndDoseCalculation.py``)
-     - 00:00.278
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleDilateBinaryMask.py` (``examples/imageProcessing/run_exampleDilateBinaryMask.py``)
-     - 00:00.209
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_DoseDeliverySimulation_run_PBSDeliveryTimings.py` (``examples/DoseDeliverySimulation/run_PBSDeliveryTimings.py``)
-     - 00:00.004
+     - 00:00.268
      - 0.0
    * - :ref:`sphx_glr_auto_community_CommunityExample_SimpleDoseComputationAndOptOnCT.py` (``community/CommunityExample/SimpleDoseComputationAndOptOnCT.py``)
      - 00:00.000
@@ -102,6 +72,9 @@ Computation times
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseDeliverySimulation_PlanDeliverySimulation.py` (``examples/DoseDeliverySimulation/PlanDeliverySimulation.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DoseDeliverySimulation_run_PBSDeliveryTimings.py` (``examples/DoseDeliverySimulation/run_PBSDeliveryTimings.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_OthersExample_create3DSeqFromDicom.py` (``examples/OthersExample/create3DSeqFromDicom.py``)
@@ -125,6 +98,9 @@ Computation times
    * - :ref:`sphx_glr_auto_examples_OthersExample_generateDRRAndGTVMasks.py` (``examples/OthersExample/generateDRRAndGTVMasks.py``)
      - 00:00.000
      - 0.0
+   * - :ref:`sphx_glr_auto_examples_OthersExample_run_generateRandomSamplesFromModel.py` (``examples/OthersExample/run_generateRandomSamplesFromModel.py``)
+     - 00:00.000
+     - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_4DProtonOptimization.py` (``examples/PlanOptimization/4DProtonOptimization.py``)
      - 00:00.000
      - 0.0
@@ -140,6 +116,18 @@ Computation times
    * - :ref:`sphx_glr_auto_examples_dynamicData_exampleInterFractionChanges.py` (``examples/dynamicData/exampleInterFractionChanges.py``)
      - 00:00.000
      - 0.0
+   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleApplyBaselineShiftToModel.py` (``examples/dynamicData/run_exampleApplyBaselineShiftToModel.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleDeformableBreathigDataAugmentation.py` (``examples/dynamicData/run_exampleDeformableBreathigDataAugmentation.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleDeformationFromWeightMaps.py` (``examples/dynamicData/run_exampleDeformationFromWeightMaps.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_dynamicData_run_exampleMidP.py` (``examples/dynamicData/run_exampleMidP.py``)
+     - 00:00.000
+     - 0.0
    * - :ref:`sphx_glr_auto_examples_imageProcessing_cupyVSsitkTransforms.py` (``examples/imageProcessing/cupyVSsitkTransforms.py``)
      - 00:00.000
      - 0.0
@@ -149,7 +137,19 @@ Computation times
    * - :ref:`sphx_glr_auto_examples_imageProcessing_exampleTransform3DCupy.py` (``examples/imageProcessing/exampleTransform3DCupy.py``)
      - 00:00.000
      - 0.0
+   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleApplyBaselineShift.py` (``examples/imageProcessing/run_exampleApplyBaselineShift.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleDilateBinaryMask.py` (``examples/imageProcessing/run_exampleDilateBinaryMask.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_imageProcessing_run_exampleTransform3D.py` (``examples/imageProcessing/run_exampleTransform3D.py``)
+     - 00:00.000
+     - 0.0
    * - :ref:`sphx_glr_auto_examples_multiplePythonEnv_backAndForthChild.py` (``examples/multiplePythonEnv/backAndForthChild.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_multiplePythonEnv_run_backAndForthParent.py` (``examples/multiplePythonEnv/run_backAndForthParent.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_multiplePythonEnv_run_sharedMemoryParent.py` (``examples/multiplePythonEnv/run_sharedMemoryParent.py``)

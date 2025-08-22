@@ -34,11 +34,11 @@ from opentps.core.processing.imageProcessing.resampler3D import resample, resamp
 
 #%%
 # Get the current working directory, its parent, then add the testData folder at the end of it
-testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'opentps/testData/')
+testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'testData/')
 
 #%%
 #load an image to use as example
-dataPath = testDataPath + "4DCTDicomLight/00"
+dataPath = "Path_to_your_image_data/"  # replace with the path to your image data folder
 img = readData(dataPath)[0]
 print('Image type =', type(img))
 zSlice = int(img.gridSize[2] / 2)

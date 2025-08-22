@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'OpenTPS'
+project = 'OpenTPS examples'
 copyright = '2024, OpenTPS team'
 author = 'OpenTPS team'
 
@@ -39,8 +39,14 @@ html_theme = 'sphinx_book_theme'
 html_static_path = ['_static']
 templates_path = ['_templates']
 
+html_logo = "_static/OpenTPS_logo_dark_big.png"   # path relative to docs folder
+
 html_theme_options = {
     'repository_url': 'https://github.com/OpenTPS/examples',
     "article_header_end": "my_header.html",
     "show_nav_level": 2,
+    "logo": {
+        "text": "OpenTPS examples",  # text next to the logo
+        "image_light": "_static/OpenTPS_logo_dark_big.png",  # logo for light mode
+    },
 }

@@ -39,7 +39,7 @@ from opentps.core.io.serializedObjectIO import loadDataStructure
 
 #%%
 # Load the serialized patient data
-dataPath = '/data/Patient0BaseAndMod.p'
+dataPath = 'Path_to_your_serialized_patient_data/'  # replace with the path to your serialized patient data
 patient = loadDataStructure(dataPath)[0]
 
 dynSeq = patient.getPatientDataOfType("Dynamic3DSequence")[0]

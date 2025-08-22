@@ -6,7 +6,7 @@ author: OpenTPS team
 In this example, we evaluate an optimized ion plan. 
 It is possible to assess range and setup errors and generate DVHs.
 
-running time: ~ 2 hours
+running time: ~ 45 minutes
 '''
 #%% 
 # Setting up the environment in google collab
@@ -98,7 +98,7 @@ couchAngles = [0.]
 #---------------------
 mc2 = MCsquareDoseCalculator()
 mc2.beamModel = bdl
-mc2.nbPrimaries = 5e4
+mc2.nbPrimaries = 1e3
 mc2.statUncertainty = 2.
 mc2.ctCalibration = ctCalibration
 
@@ -117,8 +117,8 @@ else:
     planInit.beamNames = beamNames
     planInit.couchAngles = couchAngles
     planInit.calibration = ctCalibration
-    planInit.spotSpacing = 5.0
-    planInit.layerSpacing = 5.0
+    planInit.spotSpacing = 10.0
+    planInit.layerSpacing = 10.0
     planInit.targetMargin = 5.0
     planInit.setScoringParameters(scoringSpacing=[2, 2, 2], adapt_gridSize_to_new_spacing=True)
     # needs to be called after scoringGrid settings but prior to spot placement
@@ -146,13 +146,13 @@ else:
     plan.planDesign.robustnessEval.rangeSystematicError = 3.0  # %
 
     # Regular scenario sampling
-    #plan.planDesign.robustnessEval.selectionStrategy = planDesign.robustnessEval.Strategies.REDUCED_SET
+    plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.REDUCED_SET
 
     # All scenarios (includes diagonals on sphere)
-    # plan.planDesign.robustnessEval.selectionStrategy = planDesign.robustnessEval.Strategies.ALL
+    # plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.ALL
 
     # Random scenario sampling  
-    plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.RANDOM
+    #plan.planDesign.robustnessEval.selectionStrategy = plan.planDesign.robustnessEval.Strategies.RANDOM
     plan.planDesign.robustnessEval.numScenarios = 30 # specify how many random scenarios to simulate, default = 100
     
     plan.patient = None

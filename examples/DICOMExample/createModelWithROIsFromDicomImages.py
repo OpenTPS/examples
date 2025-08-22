@@ -46,17 +46,14 @@ from opentps.core.data._patient import Patient
 #%%
 # chose the patient folder, which will be used as the patient name
 patientName = 'Patient_0'
-organ = 'liver'
-basePath = 'D:/ImageData/'
 
 #%%
 # chose the 4DCT data folder
-data4DPath = basePath + organ + '/' + patientName + '/4DCT'
+data4DPath = 'Path_to_your_4DCT_data/'  # replace with the path to your 4DCT data folder
 # chose the dicom rtStruct file
-dataStructPath = basePath + organ + '/' + patientName + '/MidP_CT_rtstruct.dcm'
+dataStructPath = 'Path_to_your_rtStruct_data/'  # replace with the path to your rtStruct data folder
 # chose a path to save the results
-savingPath = basePath + organ + '/' + patientName + '/dynModAndROIs'
-
+savingPath = 'Path_to_your_saving_path/'  # replace with the path where you want to save the results
 #%%
 # load the 4DCT data
 data4DList = readData(data4DPath)

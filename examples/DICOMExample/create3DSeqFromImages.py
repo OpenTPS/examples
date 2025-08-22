@@ -34,12 +34,12 @@ from opentps.core.io.serializedObjectIO import saveSerializedObjects
 
 #%%
 # Get the current working directory, its parent, then add the testData folder at the end of it
-testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'opentps/testData/')
+testDataPath = os.path.join(Path(os.getcwd()).parent.absolute(), 'testData/')
 
 #%%
 # read a serialized dynamic sequence
 
-dataPath = testDataPath + "4DCTDicomLight"
+dataPath = 'Path_to_your_4DCT_data/'  # replace with the path to your 4DCT data folder
 
 print('Datas present in ' + dataPath + 'are loaded.')
 dataList = readData(dataPath)

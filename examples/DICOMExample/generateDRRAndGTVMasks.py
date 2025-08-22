@@ -62,9 +62,8 @@ basePath = 'D:/ImageData/'
 dataSetFolder = '/test/'
 dataSetDataFolder = 'data/'
 
-dataPath = basePath + organ + '/' + patientFolder + patientFolderComplement + '/dynModAndROIs.p'
-savingPath = basePath + organ + '/' + patientFolder + patientFolderComplement + dataSetFolder
-
+dataPath = "Path_to_your_serialized_patient_data/"  # replace with the path to your serialized patient data
+savingPath = "Path_to_your_saving_path/"  # replace with the path where you want to save the results
 if not os.path.exists(savingPath):
     os.umask(0)
     os.makedirs(savingPath)   # Create a new directory because it does not exist
