@@ -3,5 +3,21 @@ _build
 auto_examples/**
 !auto_examples/**/*.ipynb
 !auto_examples/**/
+examples/**/output/
 
 .idea
+
+auto_community/**
+!auto_community/**/*.ipynb
+!auto_community/**/
+
+
+community/**
+!community/**/*.py
+!community/**/*.rst
+!community/**/
+
+examples/**
+!examples/**/*.py
+!examples/**/*.rst
+!examples/**/

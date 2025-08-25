@@ -4,6 +4,7 @@ on :
   push :
     branches :
       - main
+      - update_examples
 
 permissions:
   id-token: write
@@ -23,6 +24,12 @@ jobs :
           python -m pip install --upgrade pip
           pip install sphinx sphinx-gallery sphinx-book-theme
           pip install -r requirements.txt
+          git clone https://gitlab.com/openmcsquare/opentps.git
+          pip install ./opentps
+          pip install --upgrade pip setuptools wheel
+          pip install tigre[cpu]  # CPU-only install if available
+
+
       - name: Build the docs
         run: |
           make html
