@@ -267,7 +267,7 @@ ax[1].grid(True)
 ax[1].legend()
 
 convData = solver.getConvergenceData()
-ax[2].plot(np.arange(0, convData['time'], convData['time'] / convData['nIter']), convData['func_0'], 'bo-', lw=2,
+ax[2].plot(np.linspace(0, convData['time'], len(convData['func_0'])), convData['func_0'], 'bo-', lw=2,
             label='Fidelity')
 ax[2].set_xlabel('Time (s)')
 ax[2].set_ylabel('Cost')
