@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:14.683** total execution time for 44 files **from all galleries**:
+**00:33.871** total execution time for 44 files **from all galleries**:
 
 .. container::
 
@@ -32,38 +32,50 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_DoseComputation_run_SimpleDoseCalculation.py` (``examples/DoseComputation/run_SimpleDoseCalculation.py``)
-     - 00:02.595
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_simpleOptimization_createDicomStudy.py` (``examples/PlanOptimization/run_simpleOptimization_createDicomStudy.py``)
-     - 00:02.053
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_run_generateRandomSamplesFromModel.py` (``examples/DICOMExample/run_generateRandomSamplesFromModel.py``)
+     - 00:11.194
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_UseOfRangeShifterForProtonPlan.py` (``examples/DoseComputation/run_UseOfRangeShifterForProtonPlan.py``)
-     - 00:02.005
+     - 00:02.770
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_boundConstraintsOpti.py` (``examples/PlanOptimization/run_boundConstraintsOpti.py``)
-     - 00:01.844
+   * - :ref:`sphx_glr_auto_examples_DoseComputation_run_SimpleDoseCalculation.py` (``examples/DoseComputation/run_SimpleDoseCalculation.py``)
+     - 00:02.749
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_simpleOptimization_createDicomStudy.py` (``examples/PlanOptimization/run_simpleOptimization_createDicomStudy.py``)
+     - 00:02.321
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_4DProtonOptimization.py` (``examples/PlanOptimization/run_4DProtonOptimization.py``)
+     - 00:02.199
      - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationProton.py` (``examples/PlanOptimization/run_SimpleOptimizationProton.py``)
-     - 00:01.842
+     - 00:02.082
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_4DprotonEvaluation.py` (``examples/PlanOptimization/run_4DprotonEvaluation.py``)
-     - 00:01.376
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_boundConstraintsOpti.py` (``examples/PlanOptimization/run_boundConstraintsOpti.py``)
+     - 00:02.079
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_robustOptimizationProtons.py` (``examples/PlanOptimization/run_robustOptimizationProtons.py``)
+     - 00:02.076
      - 0.0
    * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_beamletFreeOpti.py` (``examples/PlanOptimization/run_beamletFreeOpti.py``)
-     - 00:01.193
+     - 00:01.482
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationPhoton.py` (``examples/PlanOptimization/run_SimpleOptimizationPhoton.py``)
-     - 00:00.533
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_4DprotonEvaluation.py` (``examples/PlanOptimization/run_4DprotonEvaluation.py``)
+     - 00:01.425
      - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_evaluatePhotonRobustness.py` (``examples/PlanOptimization/run_evaluatePhotonRobustness.py``)
-     - 00:00.528
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_evaluateProtonRobustness.py` (``examples/PlanOptimization/run_evaluateProtonRobustness.py``)
+     - 00:01.318
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_protonPlanCreationAndDoseCalculation.py` (``examples/DoseComputation/run_protonPlanCreationAndDoseCalculation.py``)
-     - 00:00.445
+     - 00:00.808
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_evaluatePhotonRobustness.py` (``examples/PlanOptimization/run_evaluatePhotonRobustness.py``)
+     - 00:00.543
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_PlanOptimization_run_SimpleOptimizationPhoton.py` (``examples/PlanOptimization/run_SimpleOptimizationPhoton.py``)
+     - 00:00.534
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseComputation_run_photonPlanCreationAndDoseCalculation.py` (``examples/DoseComputation/run_photonPlanCreationAndDoseCalculation.py``)
-     - 00:00.268
+     - 00:00.288
      - 0.0
    * - :ref:`sphx_glr_auto_community_CommunityExample_SimpleDoseComputationAndOptOnCT.py` (``community/CommunityExample/SimpleDoseComputationAndOptOnCT.py``)
      - 00:00.000
@@ -71,43 +83,31 @@ Computation times
    * - :ref:`sphx_glr_auto_community_Template_run_template.py` (``community/Template/run_template.py``)
      - 00:00.000
      - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_create3DSeqFromDicom.py` (``examples/DICOMExample/create3DSeqFromDicom.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_create3DSeqFromImages.py` (``examples/DICOMExample/create3DSeqFromImages.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_createDynamic3DModelFromDicomFields.py` (``examples/DICOMExample/createDynamic3DModelFromDicomFields.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_createModelWithROIsFromDicomImages.py` (``examples/DICOMExample/createModelWithROIsFromDicomImages.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_crop3DDataAroundROI.py` (``examples/DICOMExample/crop3DDataAroundROI.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_exampleImageResampling.py` (``examples/DICOMExample/exampleImageResampling.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_DICOMExample_generateDRRAndGTVMasks.py` (``examples/DICOMExample/generateDRRAndGTVMasks.py``)
+     - 00:00.000
+     - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseDeliverySimulation_PlanDeliverySimulation.py` (``examples/DoseDeliverySimulation/PlanDeliverySimulation.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_DoseDeliverySimulation_run_PBSDeliveryTimings.py` (``examples/DoseDeliverySimulation/run_PBSDeliveryTimings.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_create3DSeqFromDicom.py` (``examples/OthersExample/create3DSeqFromDicom.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_create3DSeqFromImages.py` (``examples/OthersExample/create3DSeqFromImages.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_createDynamic3DModelFromDicomFields.py` (``examples/OthersExample/createDynamic3DModelFromDicomFields.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_createModelWithROIsFromDicomImages.py` (``examples/OthersExample/createModelWithROIsFromDicomImages.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_crop3DDataAroundROI.py` (``examples/OthersExample/crop3DDataAroundROI.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_exampleImageResampling.py` (``examples/OthersExample/exampleImageResampling.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_generateDRRAndGTVMasks.py` (``examples/OthersExample/generateDRRAndGTVMasks.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_OthersExample_run_generateRandomSamplesFromModel.py` (``examples/OthersExample/run_generateRandomSamplesFromModel.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_4DProtonOptimization.py` (``examples/PlanOptimization/4DProtonOptimization.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_evaluateProtonRobustness.py` (``examples/PlanOptimization/evaluateProtonRobustness.py``)
-     - 00:00.000
-     - 0.0
-   * - :ref:`sphx_glr_auto_examples_PlanOptimization_robustOptimizationProtons.py` (``examples/PlanOptimization/robustOptimizationProtons.py``)
      - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_auto_examples_Segmentation_run_Segmentation.py` (``examples/Segmentation/run_Segmentation.py``)
