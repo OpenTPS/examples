@@ -10,7 +10,7 @@ running time: ~ 10 minutes
 #%% 
 # setting up the environment in google colab
 #-------------------------------------------
-# First you need to change the type of execution in the bottom left from processor to GPU. Then you can run the example.
+# You will first need to change the execution parameters in your Colab environment (bottom left) from CPU to GPU so that you can run the example.
 import sys
 if "google.colab" in sys.modules:
     from IPython import get_ipython
