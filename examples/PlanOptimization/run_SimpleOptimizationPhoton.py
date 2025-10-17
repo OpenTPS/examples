@@ -41,7 +41,6 @@ from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 from opentps.core.data import DVH
 from opentps.core.data import Patient
-from opentps.core.data.plan import FidObjective
 from opentps.core.io.scannerReader import readScanner
 from opentps.core.io.serializedObjectIO import saveRTPlan, loadRTPlan
 from opentps.core.processing.doseCalculation.doseCalculationConfig import DoseCalculationConfig
@@ -49,6 +48,7 @@ from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DO
 from opentps.core.processing.planOptimization.planOptimization import  IntensityModulationOptimizer
 from opentps.core.processing.doseCalculation.photons.cccDoseCalculator import CCCDoseCalculator
 from opentps.core.data.plan import PhotonPlanDesign
+import opentps.core.processing.planOptimization.objectives.dosimetricObjectives as doseObj
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +87,12 @@ roi.color = (255, 0, 0)  # red
 data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
+
+body = roi.copy()
+body.name = 'Body'
+body.dilateMask(20)
+body.imageArray = np.logical_xor(body.imageArray, roi.imageArray).astype(bool)
+
 
 #%%
 #Output path
@@ -127,21 +133,38 @@ else:
     planDesign.xBeamletSpacing_mm = 5
     planDesign.yBeamletSpacing_mm = 5
     planDesign.targetMargin = 5.0
-    planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.) 
-    
-    plan = planDesign.buildPlan() 
+    planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.)
 
-    beamlets = ccc.computeBeamlets(ct, plan) 
+    plan = planDesign.buildPlan()
+
+    beamlets = ccc.computeBeamlets(ct, plan)
     doseInfluenceMatrix = copy.deepcopy(beamlets)
-    
+
     plan.planDesign.beamlets = beamlets
     beamlets.storeOnFS(os.path.join(output_path, "BeamletMatrix_" + plan.seriesInstanceUID + ".blm"))
     # Save plan with initial spot weights in serialized format (OpenTPS format)
     saveRTPlan(plan, plan_file)
 
+plan.planDesign.objectives.addObjective(doseObj.DMax(body,5, weight=1.0))
 
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMAX, 20.0, 1.0)
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMIN, 20.5, 1.0)
+plan.planDesign.objectives.addObjective(doseObj.DMax(roi, 21, weight=10.0))
+plan.planDesign.objectives.addObjective(doseObj.DMin(roi, 20, weight=20.0))
+
+# Other examples of objectives
+
+# plan.planDesign.objectives.addObjective(doseObj.DUniform(roi, 20, weight=10))
+#
+# plan.planDesign.objectives.addObjective(doseObj.DMaxMean(roi,21,weight=5))
+# plan.planDesign.objectives.addObjective(doseObj.DMinMean(roi,20,weight=5))
+# plan.planDesign.objectives.addObjective(doseObj.DFallOff(roi,oar,10,5,15,weight=5))
+#
+# plan.planDesign.objectives.addObjective(doseObj.DVHMax(roi, 21,0.05, weight=5))
+# plan.planDesign.objectives.addObjective(doseObj.DVHMin(roi, 18,0.90, weight=5))
+#
+# plan.planDesign.objectives.addObjective(doseObj.EUDMin(roi, 19, 1, weight=50))
+# plan.planDesign.objectives.addObjective(doseObj.EUDMax(roi, 21, 1, weight=50))
+# plan.planDesign.objectives.addObjective(doseObj.EUDUniform(roi, 20, 1, weight=50))
+
 
 plan.numberOfFractionsPlanned = 30
 
@@ -166,6 +189,7 @@ plan.patient = patient
 #---------------------------------
 
 target_DVH = DVH(roi, doseImage)
+body_DVH = DVH(body, doseImage)
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
 clinROI = [roi.name, roi.name]
 clinMetric = ["Dmin", "Dmax"]
@@ -178,13 +202,14 @@ evaluateClinical(doseImage, [roi], clinObj)
 # center of mass
 #---------------
 roi = resampleImage3DOnImage3D(roi, ct)
+body = resampleImage3DOnImage3D(body,ct)
 COM_coord = roi.centerOfMass
 COM_index = roi.getVoxelIndexFromPosition(COM_coord)
 Z_coord = COM_index[2]
 
 img_ct = ct.imageArray[:, :, Z_coord].transpose(1, 0)
-contourTargetMask = roi.getBinaryContourMask()
-img_mask = contourTargetMask.imageArray[:, :, Z_coord].transpose(1, 0)
+img_mask = roi.imageArray[:, :, Z_coord].transpose(1, 0)
+img_body = body.imageArray[:, :, Z_coord].transpose(1, 0)
 img_dose = resampleImage3DOnImage3D(doseImage, ct)
 img_dose = img_dose.imageArray[:, :, Z_coord].transpose(1, 0)
 
@@ -195,10 +220,13 @@ fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 ax[0].axes.get_xaxis().set_visible(False)
 ax[0].axes.get_yaxis().set_visible(False)
 ax[0].imshow(img_ct, cmap='gray')
-ax[0].imshow(img_mask, alpha=.2, cmap='binary')  # PTV
+ax[0].contour(img_body,[0.5],colors='green') # body
+ax[0].contour(img_mask,[0.5],colors='red')  # PTV
+
 dose = ax[0].imshow(img_dose, cmap='jet', alpha=.2)
 plt.colorbar(dose, ax=ax[0])
-ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name)
+ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name,color='red')
+ax[1].plot(body_DVH.histogram[0], body_DVH.histogram[1], label=body_DVH.name,color='green')
 ax[1].set_xlabel("Dose (Gy)")
 ax[1].set_ylabel("Volume (%)")
 ax[1].grid(True)
