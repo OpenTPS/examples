@@ -152,7 +152,6 @@ else:
 
 # Set objectives (attribut is already initialized in planDesign object)
 plan.planDesign.objectives.addObjective(doseObj.DMax(body,5, weight=1.0))
-
 plan.planDesign.objectives.addObjective(doseObj.DMax(roi, 21, weight=10.0))
 plan.planDesign.objectives.addObjective(doseObj.DMin(roi, 20, weight=20.0))
 
