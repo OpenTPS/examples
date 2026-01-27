@@ -183,6 +183,7 @@ plan[2].layers[0].rangeShifterSettings.rangeShifterWaterEquivalentThickness = 15
 
 #%%
 # Save plan in OpenTPS format (serialized)
+
 saveRTPlan(plan, os.path.join(output_path, 'dummy_plan.tps'))
 
 #%%
@@ -195,8 +196,8 @@ print(plan[0].layers[0].spotWeights)  # plan2 is the same as plan
 # Save plan in Dicom format
 dicomPath = os.path.join(output_path)
 writeRTPlan(plan, dicomPath)
-if not os.path.exists(os.path.join(dicomPath, 'CT')):
-    os.mkdir(os.path.join(dicomPath, 'CT'))
+
+
 writeDicomCT(ct, os.path.join(dicomPath, 'CT'))
 print('Dicom files saved in', dicomPath)
 
@@ -204,7 +205,8 @@ print('Dicom files saved in', dicomPath)
 contour = target.getROIContour()
 struct = RTStruct()
 struct.appendContour(contour)
-writeRTStruct(struct, os.path.join(output_path, 'CT'))
+
+writeRTStruct(struct, os.path.join(dicomPath, 'CT'))
 
 # load plan in Dicom format
 dataList = readData(dicomPath, maxDepth=2)
@@ -231,6 +233,7 @@ doseImage = doseCalculator.computeDose(ct, plan)  # You can choose the plan you 
 
 # Export dose (Dicom)
 writeRTDose(doseImage, dicomPath)
+# doseImageDicom = readDicomDose(r"pathToDicomDose") # If you want to import a dose image from a Dicom file
 
 #%%
 # Plot dose
