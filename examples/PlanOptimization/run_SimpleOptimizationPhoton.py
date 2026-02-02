@@ -1,5 +1,5 @@
 '''
-Simple IMPT photon plan optimization
+Simple IMRT photon plan optimization
 ====================================
 author: OpenTPS team
 
