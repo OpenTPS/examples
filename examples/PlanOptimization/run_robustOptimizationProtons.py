@@ -30,13 +30,13 @@ sys.path.append('..')
 
 #%%
 # import the needed opentps.core packages
+import opentps.core.processing.planOptimization.objectives.dosimetricObjectives as doseObj
 from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 from opentps.core.data.plan._protonPlanDesign import ProtonPlanDesign
 from opentps.core.data.plan import RobustnessProton
 from opentps.core.data import DVH
 from opentps.core.data import Patient
-from opentps.core.data.plan import FidObjective
 from opentps.core.io import mcsquareIO
 from opentps.core.io.scannerReader import readScanner
 from opentps.core.io.serializedObjectIO import loadRTPlan, saveRTPlan
@@ -88,6 +88,11 @@ data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
 
+body = roi.copy()
+body.name = 'Body'
+body.dilateMask(20)
+body.imageArray = np.logical_xor(body.imageArray, roi.imageArray).astype(bool)
+
 #%%
 # Design plan
 #----------------
@@ -136,7 +141,7 @@ else:
     # All scenarios (includes diagonals on sphere)
     # planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.ALL
 
-    # Random scenario sampling  
+    # Random scenario sampling
     # planDesign.robustness.selectionStrategy = planDesign.robustness.Strategies.RANDOM
     planDesign.robustness.numScenarios = 5 # specify how many random scenarios to simulate, default = 100
 
@@ -149,11 +154,11 @@ else:
     plan = planDesign.buildPlan()  # Spot placement
     plan.PlanName = "RobustPlan"
 
-    nominal, scenarios = mc2.computeRobustScenarioBeamlets(ct, plan, roi=[roi], storePath=output_path)
+    nominal, scenarios = mc2.computeRobustScenarioBeamlets(ct, plan, roi=[roi,body], storePath=output_path)
     plan.planDesign.beamlets = nominal
     plan.planDesign.robustness.scenarios = scenarios
     plan.planDesign.robustness.numScenarios = len(scenarios)
-    
+
 
     #saveRTPlan(plan, plan_file)
 
@@ -164,8 +169,10 @@ saveRTPlan(plan, plan_file)
 #%%
 # Set objectives (attribut is already initialized in planDesign object)
 #----------------------
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMAX, 20.0, 1.0, robust=True)
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMIN, 20.5, 1.0, robust=True)
+plan.planDesign.objectives.addObjective(doseObj.DMax(body,5, weight=1.0))
+
+plan.planDesign.objectives.addObjective(doseObj.DMax(roi, 21, weight=10.0))
+plan.planDesign.objectives.addObjective(doseObj.DMin(roi, 20, weight=20.0))
 
 solver = IntensityModulationOptimizer(method='Scipy_L-BFGS-B', plan=plan, maxiter=50)
 
@@ -177,10 +184,15 @@ doseImage, ps = solver.optimize()
 plan_file = os.path.join(output_path, "Plan_Proton_WaterPhantom_cropped_optimized.tps")
 saveRTPlan(plan, plan_file, unloadBeamlets=False)
 
+mc2.nbPrimaries = 1e6
+doseImage = mc2.computeDose(ct, plan)
+
 #%%
 # Compute DVH
 #----------------------
 target_DVH = DVH(roi, doseImage)
+body_DVH = DVH(body, doseImage)
+
 print('D95 = ' + str(target_DVH.D95) + ' Gy')
 print('D5 = ' + str(target_DVH.D5) + ' Gy')
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
@@ -189,13 +201,14 @@ print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
 # Center of mass
 #----------------------
 roi = resampleImage3DOnImage3D(roi, ct)
+body = resampleImage3DOnImage3D(body,ct)
 COM_coord = roi.centerOfMass
 COM_index = roi.getVoxelIndexFromPosition(COM_coord)
 Z_coord = COM_index[2]
 
 img_ct = ct.imageArray[:, :, Z_coord].transpose(1, 0)
-contourTargetMask = roi.getBinaryContourMask()
-img_mask = contourTargetMask.imageArray[:, :, Z_coord].transpose(1, 0)
+img_mask = roi.imageArray[:, :, Z_coord].transpose(1, 0)
+img_body = body.imageArray[:, :, Z_coord].transpose(1, 0)
 img_dose = resampleImage3DOnImage3D(doseImage, ct)
 img_dose = img_dose.imageArray[:, :, Z_coord].transpose(1, 0)
 
@@ -206,10 +219,12 @@ fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 ax[0].axes.get_xaxis().set_visible(False)
 ax[0].axes.get_yaxis().set_visible(False)
 ax[0].imshow(img_ct, cmap='gray')
-ax[0].imshow(img_mask, alpha=.2, cmap='binary')  # PTV
+ax[0].contour(img_body,[0.5],colors='green')  # Body
+ax[0].contour(img_mask,[0.5],colors='red')  # PTV
 dose = ax[0].imshow(img_dose, cmap='jet', alpha=.2)
 plt.colorbar(dose, ax=ax[0])
-ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name)
+ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name,color='red')
+ax[1].plot(body_DVH.histogram[0], body_DVH.histogram[1], label=body_DVH.name,color='green')
 ax[1].set_xlabel("Dose (Gy)")
 ax[1].set_ylabel("Volume (%)")
 plt.grid(True)

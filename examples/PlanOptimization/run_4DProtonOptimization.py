@@ -36,7 +36,6 @@ from opentps.core.data.images import ROIMask
 from opentps.core.data.plan._protonPlanDesign import ProtonPlanDesign
 from opentps.core.data import DVH
 from opentps.core.data import Patient
-from opentps.core.data.plan import FidObjective
 from opentps.core.io import mcsquareIO
 from opentps.core.io.dataLoader import readData
 from opentps.core.io.scannerReader import readScanner
@@ -47,6 +46,7 @@ from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DO
 from opentps.core.processing.planOptimization.planOptimization import IntensityModulationOptimizer
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
 from opentps.core.io.dicomIO import writeRTDose, readDicomDose
+import opentps.core.processing.planOptimization.objectives.dosimetricObjectives as doseObj
 
 
 logger = logging.getLogger(__name__)
@@ -68,8 +68,8 @@ bdl = mcsquareIO.readBDL(DoseCalculationConfig().bdlFile)
 #%%
 #CT and ROI creation
 #---------------------------
-# Generic example: 4DCT composed of 3 CTs : 2 phases and the MidP. 
-# The anatomy consists of a square target moving vertically, with an organ at risk and soft tissue (muscle) in front of it. 
+# Generic example: 4DCT composed of 3 CTs : 2 phases and the MidP.
+# The anatomy consists of a square target moving vertically, with an organ at risk and soft tissue (muscle) in front of it.
 CT4D = []
 ROI4D = []
 for i in range(0, 3):
@@ -87,7 +87,7 @@ for i in range(0, 3):
     Patient.id = f'12082024'
     Patient.birthDate = dt.strftime('%Y%m%d')
     patient.sex = ""
-    
+
     ctSize = 150
     ct = CTImage(seriesInstanceUID=ctSeriesInstanceUID, frameOfReferenceUID=frameOfReferenceUID)
     ct.name = f'CT_Phase_{i}'
@@ -130,7 +130,7 @@ for i in range(0, 3):
         data[25:45, 50:80, 65:85] = True
     TV.imageArray = data
     ROI.append(TV)
-    
+
     # Muscle
     Muscle = ROIMask()
     Muscle.patient = patient
@@ -225,8 +225,8 @@ else:
     # planDesign.robustness.RandomPeriodError = 5.0 # %
     # planDesign.robustness.Breathing_period = 1  # x100%    # default value
 
-    planDesign.spotSpacing = 10.0 
-    planDesign.layerSpacing = 10.0 
+    planDesign.spotSpacing = 10.0
+    planDesign.layerSpacing = 10.0
     planDesign.targetMargin = 7 # Enough to encompass target motion
 
     planDesign.defineTargetMaskAndPrescription(target = RefTV, targetPrescription = 60.)
@@ -234,7 +234,7 @@ else:
     plan = planDesign.buildPlan()
     plan.rtPlanName = f"RobustPlan_4D"
 
-    # refIndex : 
+    # refIndex :
     # ACCUMULATED -> Index of the Image in the 4DCT one wish we will accumulate the dose.
     ## SYSTEMATIC -> Index of the Image in the 4DCT who will be used as the nominal. So the one closer to the MidP. Or the Midp.
 
@@ -248,10 +248,10 @@ else:
 #%%
 # Set objectives
 #----------------------
-plan.planDesign.objectives.addFidObjective(RefTV, FidObjective.Metrics.DMAX, limitValue = 63.0, weight = 100.0, robust=True)
-plan.planDesign.objectives.addFidObjective(RefTV, FidObjective.Metrics.DMIN, limitValue = 60.0, weight = 100.0, robust=True)
-plan.planDesign.objectives.addFidObjective(RefOAR, FidObjective.Metrics.DMAX, limitValue = 40.0, weight = 80.0)
-plan.planDesign.objectives.addFidObjective(RefBody, FidObjective.Metrics.DMAX, limitValue = 40.0, weight = 80.0)
+plan.planDesign.objectives.addObjective(doseObj.DMax(RefTV,63, weight=100.0, robust=True))
+plan.planDesign.objectives.addObjective(doseObj.DMin(RefTV,60, weight=100.0, robust=True))
+plan.planDesign.objectives.addObjective(doseObj.DMax(RefOAR, 40, weight=80.0))
+plan.planDesign.objectives.addObjective(doseObj.DMax(RefBody, 40, weight=80.0))
 
 #%%
 # Optimize treatment plan

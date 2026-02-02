@@ -34,12 +34,12 @@ from opentps.core.data.plan import ObjectivesList
 from opentps.core.data.plan._protonPlanDesign import ProtonPlanDesign
 from opentps.core.data import DVH
 from opentps.core.data import Patient
-from opentps.core.data.plan import FidObjective
 from opentps.core.io import mcsquareIO
 from opentps.core.io.scannerReader import readScanner
 from opentps.core.processing.doseCalculation.doseCalculationConfig import DoseCalculationConfig
 from opentps.core.processing.doseCalculation.protons.mcsquareDoseCalculator import MCsquareDoseCalculator
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
+import opentps.core.processing.planOptimization.objectives.dosimetricObjectives as doseObj
 
 #%%
 #Output path
@@ -90,6 +90,11 @@ data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
 
+body = roi.copy()
+body.name = 'body'
+body.dilateMask(20)
+body.imageArray = np.logical_xor(body.imageArray, roi.imageArray).astype(bool)
+
 image = plt.imshow(ct.imageArray[110,:,:],cmap='Blues')
 plt.colorbar(image)
 plt.contour(roi.imageArray[110,:,:],colors="red")
@@ -129,31 +134,33 @@ planDesign.gantryAngles = gantryAngles
 planDesign.beamNames = beamNames
 planDesign.couchAngles = couchAngles
 planDesign.calibration = ctCalibration
-planDesign.spotSpacing = 5.0
-planDesign.layerSpacing = 5.0
-planDesign.targetMargin = 5.0
+planDesign.spotSpacing = 3.0
+planDesign.layerSpacing = 3.0
+planDesign.targetMargin = 1.0
 # needs to be called prior to spot placement
-planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.) 
-        
+planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.)
+
 
 plan = planDesign.buildPlan()  # Spot placement
 plan.PlanName = "NewPlan"
 
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMAX, 20.0, 1.0)
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMIN, 20.0, 1.0)
+# plan.planDesign.objectives.addObjective(doseObj.DMax(body,5, weight=1.0))
 
+plan.planDesign.objectives.addObjective(doseObj.DMax(roi, 20, weight=10.0))
+plan.planDesign.objectives.addObjective(doseObj.DMin(roi, 20, weight=10.0))
 #%%
 #Mcsquare beamlet free planOptimization
 #--------------------------------------
 #Now that we have every needed objects we can compute the optimization through MCsquare. :warning: It may take some time to compute.
 
-doseImage = mc2.optimizeBeamletFree(ct, plan, [roi])
+doseImage = mc2.optimizeBeamletFree(ct, plan, [roi,body])
 
 #%%
 #Dose volume histogram
 #---------------------
 
 target_DVH = DVH(roi, doseImage)
+body_DVH = DVH(body, doseImage)
 print('D95 = ' + str(target_DVH.D95) + ' Gy')
 print('D5 = ' + str(target_DVH.D5) + ' Gy')
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
@@ -169,8 +176,8 @@ COM_index = roi.getVoxelIndexFromPosition(COM_coord)
 Z_coord = COM_index[2]
 
 img_ct = ct.imageArray[:, :, Z_coord].transpose(1, 0)
-contourTargetMask = roi.getBinaryContourMask()
-img_mask = contourTargetMask.imageArray[:, :, Z_coord].transpose(1, 0)
+img_mask = roi.imageArray[:, :, Z_coord].transpose(1, 0)
+img_body = body.imageArray[:, :, Z_coord].transpose(1, 0)
 img_dose = resampleImage3DOnImage3D(doseImage, ct)
 img_dose = img_dose.imageArray[:, :, Z_coord].transpose(1, 0)
 
@@ -182,10 +189,12 @@ fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 ax[0].axes.get_xaxis().set_visible(False)
 ax[0].axes.get_yaxis().set_visible(False)
 ax[0].imshow(img_ct, cmap='gray')
-ax[0].imshow(img_mask, alpha=.2, cmap='binary')  # PTV
+ax[0].contour(img_body,[0.5],colors='green')  # Body
+ax[0].contour(img_mask,[0.5],colors='red')  # PTV
 dose = ax[0].imshow(img_dose, cmap='jet', alpha=.2)
 plt.colorbar(dose, ax=ax[0])
-ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name)
+ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name,color='red')
+ax[1].plot(body_DVH.histogram[0], body_DVH.histogram[1], label=body_DVH.name,color='green')
 ax[1].set_xlabel("Dose (Gy)")
 ax[1].set_ylabel("Volume (%)")
 ax[0].set_title("Computed dose")

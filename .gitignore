@@ -6,6 +6,9 @@ auto_examples/**
 examples/**/output/
 
 .idea
+*.dcm
+*.tps
+*.png
 
 auto_community/**
 !auto_community/**/*.ipynb

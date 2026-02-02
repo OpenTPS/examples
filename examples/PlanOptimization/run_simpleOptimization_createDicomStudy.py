@@ -34,7 +34,7 @@ sys.path.append('..')
 
 #%%
 #import the needed opentps.core packages
-
+import opentps.core.processing.planOptimization.objectives.dosimetricObjectives as doseObj
 from opentps.core.io.dicomIO import writeRTPlan, writeDicomCT, writeRTDose, writeRTStruct
 from opentps.core.processing.planOptimization.tools import evaluateClinical
 from opentps.core.data.images import CTImage, DoseImage
@@ -44,7 +44,6 @@ from opentps.core.data.plan._protonPlanDesign import ProtonPlanDesign
 from opentps.core.data import DVH
 from opentps.core.data import Patient
 from opentps.core.data import RTStruct
-from opentps.core.data.plan import FidObjective
 from opentps.core.io import mcsquareIO
 from opentps.core.io.scannerReader import readScanner
 from opentps.core.io.serializedObjectIO import saveRTPlan, loadRTPlan
@@ -123,6 +122,11 @@ data = np.zeros((ctSize, ctSize, ctSize)).astype(bool)
 data[100:120, 100:120, 100:120] = True
 roi.imageArray = data
 
+body = roi.copy()
+body.name = 'Body'
+body.dilateMask(20)
+body.imageArray = np.logical_xor(body.imageArray, roi.imageArray).astype(bool)
+
 #%%
 #Configuration of Mcsquare
 #-------------------------
@@ -161,11 +165,11 @@ else:
     planDesign.targetMargin = 5.0
     planDesign.setScoringParameters(scoringSpacing=[2, 2, 2], adapt_gridSize_to_new_spacing=True)
     planDesign.defineTargetMaskAndPrescription(target = roi, targetPrescription = 20.) # needs to be called prior spot placement
-    
+
     plan = planDesign.buildPlan()  # Spot placement
     plan.rtPlanName = "Simple_Patient"
 
-    beamlets = mc2.computeBeamlets(ct, plan, roi=[roi])
+    beamlets = mc2.computeBeamlets(ct, plan, roi=[roi,body])
     plan.planDesign.beamlets = beamlets
     beamlets.storeOnFS(os.path.join(output_path, "BeamletMatrix_" + plan.seriesInstanceUID + ".blm"))
     # Save plan with initial spot weights in serialized format (OpenTPS format)
@@ -177,8 +181,10 @@ else:
 #----------
 
 # Set objectives (attribut is already initialized in planDesign object)
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMAX, 20.0, 1.0)
-plan.planDesign.objectives.addFidObjective(roi, FidObjective.Metrics.DMIN, 20.5, 1.0)
+plan.planDesign.objectives.addObjective(doseObj.DMax(body,5, weight=1.0))
+
+plan.planDesign.objectives.addObjective(doseObj.DMax(roi, 21, weight=10.0))
+plan.planDesign.objectives.addObjective(doseObj.DMin(roi, 20, weight=20.0))
 
 #%%
 #Optimize plan
@@ -205,6 +211,7 @@ writeRTPlan(plan, output_path)
 #---------------------
 
 target_DVH = DVH(roi, doseImage)
+body_DVH = DVH(body, doseImage)
 print('D5 - D95 =  {} Gy'.format(target_DVH.D5 - target_DVH.D95))
 clinROI = [roi.name, roi.name]
 clinMetric = ["Dmin", "Dmax"]
@@ -217,7 +224,7 @@ doseImage.referencePlan = plan
 doseImage.referenceCT = ct
 doseImage.patient = patient
 doseImage.studyInstanceUID = studyInstanceUID
-doseImage.frameOfReferenceUID = frameOfReferenceUID 
+doseImage.frameOfReferenceUID = frameOfReferenceUID
 doseImage.sopClassUID = '1.2.840.10008.5.1.4.1.1.481.2'
 doseImage.mediaStorageSOPClassUID = '1.2.840.10008.5.1.4.1.1.481.2'
 doseImage.sopInstanceUID = pydicom.uid.generate_uid()
@@ -242,8 +249,8 @@ COM_index = roi.getVoxelIndexFromPosition(COM_coord)
 Z_coord = COM_index[2]
 
 img_ct = ct.imageArray[:, :, Z_coord].transpose(1, 0)
-contourTargetMask = roi.getBinaryContourMask()
-img_mask = contourTargetMask.imageArray[:, :, Z_coord].transpose(1, 0)
+img_mask = roi.imageArray[:, :, Z_coord].transpose(1, 0)
+img_body = body.imageArray[:, :, Z_coord].transpose(1, 0)
 img_dose = resampleImage3DOnImage3D(doseImage, ct)
 img_dose = img_dose.imageArray[:, :, Z_coord].transpose(1, 0)
 
@@ -255,10 +262,12 @@ fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 ax[0].axes.get_xaxis().set_visible(False)
 ax[0].axes.get_yaxis().set_visible(False)
 ax[0].imshow(img_ct, cmap='gray')
-ax[0].imshow(img_mask, alpha=.2, cmap='binary')  # PTV
+ax[0].contour(img_body,[0.5],colors='green')  # Body
+ax[0].contour(img_mask,[0.5],colors='red')
 dose = ax[0].imshow(img_dose, cmap='jet', alpha=.2)
 plt.colorbar(dose, ax=ax[0])
-ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name)
+ax[1].plot(target_DVH.histogram[0], target_DVH.histogram[1], label=target_DVH.name,color='red')
+ax[1].plot(body_DVH.histogram[0], body_DVH.histogram[1], label=body_DVH.name,color='green')
 ax[1].set_xlabel("Dose (Gy)")
 ax[1].set_ylabel("Volume (%)")
 ax[1].grid(True)
