@@ -9,6 +9,7 @@ examples/**/output/
 *.dcm
 *.tps
 *.png
+*.DS_Store
 
 auto_community/**
 !auto_community/**/*.ipynb
