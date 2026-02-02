@@ -1,5 +1,2 @@
 matplotlib
-numpy
-scipy==1.10.1
-psutil
 cupy-cuda12x
