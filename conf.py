@@ -28,7 +28,7 @@ sphinx_gallery_conf = {
         "auto_community",    # output folder for community gallery
     ],
     'filename_pattern': r'run_.*\.py$',  # matches any file starting with 'run_'
-    'ignore_pattern': r'__init__\.py',   # optional: ignore __init__.py
+    'ignore_pattern': [r'__init__\.py',r'examples/showStuff.py',r'examples/syntheticData.py'],   # files to exclude from gallery generation
 }
 
 
