@@ -20,7 +20,6 @@ if "google.colab" in sys.modules:
 import numpy as np
 import sys
 from multiprocessing import shared_memory
-import matplotlib.pyplot as plt
 
 #%%
 class AIModel():
@@ -61,11 +60,3 @@ if __name__ == "__main__":
 
         # Flush the output to ensure the parent script receives it
         sys.stdout.flush()
-
-
-    # print("Start script 2")
-    # existing_shm = shared_memory.SharedMemory(name='sharedArray')
-    # arrayInScript2 = np.ndarray((30, 40, 50), dtype=float, buffer=existing_shm.buf)
-    # processedArray = script2(arrayInScript2)
-    # del arrayInScript2
-    # existing_shm.close()

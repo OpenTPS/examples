@@ -46,9 +46,6 @@ from opentps.core.processing.segmentation.segmentation3D import getBoxAroundROI
 from opentps.core.processing.deformableDataAugmentationToolBox.modelManipFunctions import *
 from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData, applyTransform3D
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from syntheticData import createSynthetic4DCT
 
 logger = logging.getLogger(__name__)
 
@@ -64,23 +61,13 @@ logger.info('Files will be stored in {}'.format(output_path))
 #%%
 # paths selection
 #----------------
-organ = 'lung'
-studyFolder = 'FDGorFAZA_study/'
-patientFolder = 'Patient_4'
-patientComplement = '/1/FDG1'
-basePath = '/DATA2/public/'
-dataPath = basePath + organ + '/' + studyFolder + patientFolder + patientComplement + '/dynModAndROIs_bodyCropped.p'
-
-#dataPath = './ImageData/lung/Patient_4/1/FDG1/dynModAndROIs_bodyCropped.p'
-
-# ctList, roiList = createSynthetic4DCT(returnTumorMask=True)
+dataPath = "Path_to_your_serialized_dynamic3DModel/"  # replace with the path to your serialized dynamic3DModel
 
 #%%
 # parameters selection
 #---------------------
-bodyContourToUse = 'Body'
-targetContourToUse = 'GTV T'
-lungContourToUse = 'R lung'
+bodyContourToUse = 'your body contour name'  # replace with the name of the body contour in your RTStruct
+targetContourToUse = 'your target contour name'  # replace with the name of the target contour in your RTStruct
 
 contourToAddShift = targetContourToUse
 

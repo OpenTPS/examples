@@ -26,20 +26,16 @@ import copy
 
 import matplotlib.pyplot as plt
 import logging
+import numpy as np
 import os
 
 #%%
 #import the needed opentps.core packages
 from opentps.core.data.images import VectorField3D
-from opentps.core.data.dynamicData._dynamic3DModel import Dynamic3DModel
+from opentps.core.data.images import CTImage
+from opentps.core.data.images import ROIMask
 from opentps.core.data._transform3D import Transform3D
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from showStuff import showModelWithAnimatedFields
-from syntheticData import *
-from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
 from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData
-from opentps.core.processing.imageProcessing.resampler3D import resample
 
 logger = logging.getLogger(__name__)
 #%%

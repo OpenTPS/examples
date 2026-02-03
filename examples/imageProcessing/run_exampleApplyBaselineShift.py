@@ -32,9 +32,6 @@ import os
 from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 from opentps.core.processing.imageProcessing.syntheticDeformation import applyBaselineShift
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from syntheticData import *
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +43,39 @@ output_path = os.path.join(os.getcwd(), 'Output', 'ExampleApplyBasilineShift')
 if not os.path.exists(output_path):
         os.makedirs(output_path)
 logger.info('Files will be stored in {}'.format(output_path))
+
+#%%
+# Synthetic 4DCT generation function
+#----------------------------------------
+def createSynthetic3DCT(diaphragmPos = 20, targetPos = [50, 100, 35], spacing=[1, 1, 2], returnTumorMask = False):
+    # GENERATE SYNTHETIC CT IMAGE
+    # background
+    im = np.full((170, 170, 100), -1000)
+    im[20:150, 70:130, :] = 0
+    # left lung
+    im[30:70, 80:120, diaphragmPos:] = -800
+    # right lung
+    im[100:140, 80:120, diaphragmPos:] = -800
+    # target
+    im[targetPos[0]-5:targetPos[0]+5, targetPos[1]-5:targetPos[1]+5, targetPos[2]-5:targetPos[2]+5] = 0
+    # vertebral column
+    im[80:90, 95:105, :] = 800
+    # rib
+    im[22:26, 90:110, 46:50] = 800
+    # couch
+    im[:, 130:135, :] = 100
+    ct = CTImage(imageArray=im, name='fixed', origin=[0, 0, 0], spacing=spacing)
+
+    if returnTumorMask:
+        mask = np.full((170, 170, 100), 0)
+        mask[targetPos[0]-5:targetPos[0]+5, targetPos[1]-5:targetPos[1]+5, targetPos[2]-5:targetPos[2]+5] = 1
+        roi = ROIMask(imageArray=mask, origin=[0, 0, 0], spacing=spacing)
+
+        return ct, roi
+
+    else:
+        return ct
+
 
 #%%
 # GENERATE SYNTHETIC CT IMAGE AND TUMOR MASK
