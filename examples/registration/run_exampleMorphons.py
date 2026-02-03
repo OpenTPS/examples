@@ -31,7 +31,9 @@ import os
 
 from opentps.core.data.images import CTImage
 from opentps.core.processing.registration.registrationMorphons import RegistrationMorphons
-from ..syntheticData import *
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from syntheticData import *
 
 logger = logging.getLogger(__name__)
 

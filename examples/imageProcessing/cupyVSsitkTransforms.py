@@ -33,8 +33,10 @@ import os
 from opentps.core.data.images import VectorField3D
 from opentps.core.data.dynamicData._dynamic3DModel import Dynamic3DModel
 from opentps.core.data._transform3D import Transform3D
-from ..showStuff import showModelWithAnimatedFields
-from ..syntheticData import *
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from showStuff import showModelWithAnimatedFields
+from syntheticData import *
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
 from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData
 from opentps.core.processing.imageProcessing.resampler3D import resample
