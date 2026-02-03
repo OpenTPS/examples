@@ -42,7 +42,10 @@ from subprocess import Popen, PIPE
 from pathlib import Path
 import subprocess
 
-from opentps.core.examples.syntheticData import createSynthetic3DCT
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from syntheticData import createSynthetic3DCT
 
 #%%
 # Set the child script environnement path and child scrip file path

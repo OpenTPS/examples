@@ -32,7 +32,10 @@ import os
 from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 from opentps.core.processing.imageProcessing.syntheticDeformation import applyBaselineShift
-from opentps.core.examples.syntheticData import *
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from syntheticData import *
 
 logger = logging.getLogger(__name__)
 

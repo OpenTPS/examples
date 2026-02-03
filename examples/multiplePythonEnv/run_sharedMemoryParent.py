@@ -33,7 +33,10 @@ import subprocess
 from multiprocessing import shared_memory
 from pathlib import Path
 
-from opentps.core.examples.syntheticData import createSynthetic3DCT
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from syntheticData import createSynthetic3DCT
 
 #%%
 # set the child script environnement path and child scrip file path
