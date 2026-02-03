@@ -1,2 +1,3 @@
 matplotlib
 cupy-cuda12x
+tigre[cpu]
