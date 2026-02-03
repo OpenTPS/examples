@@ -21,15 +21,16 @@ extensions = [
 sphinx_gallery_conf = {
     "examples_dirs": [
         "examples",             # your main examples
-        "community",            # new folder for community contributions
+        "community",   # new folder for community contributions
     ],
     "gallery_dirs": [
         "auto_examples",        # output folder for main gallery
-        "auto_community",       # output folder for community gallery
+        "auto_community",    # output folder for community gallery
     ],
     'filename_pattern': r'run_.*\.py$',  # matches any file starting with 'run_'
-    'ignore_pattern': r'__init__\.py|examples/showStuff\.py|examples/syntheticData\.py',  # combine all into a single regex
+    'ignore_pattern': r'(__init__\.py|showStuff\.py|syntheticData\.py)$',   # files to exclude from gallery generation
 }
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
