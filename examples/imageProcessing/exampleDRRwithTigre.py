@@ -19,7 +19,7 @@ if "google.colab" in sys.modules:
     get_ipython().system('pip install cupy-cuda12x')
     get_ipython().system('git clone https://github.com/CERN/TIGRE.git')
     get_ipython().system('pip install ./TIGRE')
-    get_ipython().system('pip install scipy==1.10.1')
+
     import opentps
     
 #%%
