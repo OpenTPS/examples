@@ -32,9 +32,6 @@ import numpy as np
 import subprocess
 from multiprocessing import shared_memory
 from pathlib import Path
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
 
 
 #%%
