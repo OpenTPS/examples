@@ -31,7 +31,9 @@ import os
 
 from opentps.core.processing.imageProcessing import resampler3D
 from opentps.core.data.dynamicData._dynamic3DModel import Dynamic3DModel
-from opentps.core.examples.syntheticData import createSynthetic4DCT
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+from syntheticData import createSynthetic4DCT
 from opentps.core.processing.deformableDataAugmentationToolBox.weightMaps import generateDeformationFromTrackers, generateDeformationFromTrackersAndWeightMaps
 
 logger = logging.getLogger(__name__)
