@@ -42,10 +42,7 @@ from subprocess import Popen, PIPE
 from pathlib import Path
 import subprocess
 
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from syntheticData import createSynthetic3DCT
+from ..syntheticData import createSynthetic3DCT
 
 #%%
 # Set the child script environnement path and child scrip file path

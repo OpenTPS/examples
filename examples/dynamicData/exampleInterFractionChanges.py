@@ -46,10 +46,7 @@ from opentps.core.processing.segmentation.segmentation3D import getBoxAroundROI
 from opentps.core.processing.deformableDataAugmentationToolBox.modelManipFunctions import *
 from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData, applyTransform3D
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from syntheticData import createSynthetic4DCT
+from ..syntheticData import createSynthetic4DCT
 
 logger = logging.getLogger(__name__)
 

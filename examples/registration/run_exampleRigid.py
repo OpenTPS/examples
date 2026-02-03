@@ -31,10 +31,7 @@ import os
 #import the needed opentps.core packages
 
 from opentps.core.processing.registration.registrationRigid import RegistrationRigid
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from syntheticData import *
+from ..syntheticData import *
 from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
 from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData
 

@@ -39,10 +39,7 @@ from opentps.core.data.dynamicData._dynamic3DModel import Dynamic3DModel
 from opentps.core.processing.deformableDataAugmentationToolBox.generateDynamicSequencesFromModel import generateDynSeqFromBreathingSignalsAndModel
 from opentps.core.processing.imageProcessing.imageTransform3D import getVoxelIndexFromPosition
 from opentps.core.processing.imageProcessing.resampler3D import resample
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from syntheticData import*
+from ..syntheticData import*
 
 logger = logging.getLogger(__name__)
 
