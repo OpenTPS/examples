@@ -15,7 +15,7 @@ if "google.colab" in sys.modules:
     get_ipython().system('git clone https://gitlab.com/openmcsquare/opentps.git')
     get_ipython().system('pip install ./opentps')
 
-    import opentps
+    import opentps 
 
 #%%
 #imports
@@ -31,6 +31,7 @@ import os
 
 from opentps.core.data.images import CTImage
 from opentps.core.processing.registration.registrationMorphons import RegistrationMorphons
+from opentps.core.processing.imageProcessing import resampleOn
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +59,7 @@ moving = CTImage(imageArray=moving_img, name='moving', origin=[0, 0, 0], spacing
 
 start_time = time.time()
 reg = RegistrationMorphons(fixed, moving, baseResolution=2.0, nbProcesses=1)
-df = reg.compute()
+df = reg.compute().displacement
 processing_time = time.time() - start_time
 print('Registration processing time was', processing_time, '\n')
 
@@ -67,11 +68,16 @@ print('Registration processing time was', processing_time, '\n')
 #----------------------------------------------------------------------------------
 
 # COMPUTE IMAGE DIFFERENCE
-df.resampleOn(moving, fillValue=-1024.)
+deformedImage = reg.deformed
+resampledOnFixedGrid = resampleOn(deformedImage, target=fixed, fillValue=-1024)
 diff_before = fixed.copy()
-diff_before._imageArray = moving.imageArray - fixed.imageArray
+diff_before._imageArray = fixed.imageArray - moving.imageArray
 diff_after = fixed.copy()
-diff_after._imageArray = reg.deformed.imageArray - fixed.imageArray
+diff_after._imageArray = fixed.imageArray - resampledOnFixedGrid.imageArray
+
+# RESAMPLE VELOCITY FIELD
+# resampling is needed as the baseResolution of the registration is different from the resolution of the fixed image
+velocity = resampleOn(df.velocity, target=reg.deformed, fillValue=0)
 
 # CHECK RESULTS
 diff_before_sum = abs(diff_before.imageArray.sum())
@@ -83,7 +89,7 @@ assert abs(diff_after.imageArray[27,27,27])==0, f"Wrong target voxel difference 
 # Plot results
 #----------------
 
-fig, ax = plt.subplots(3, 3)
+fig, ax = plt.subplots(3, 3, figsize=(14, 12))
 vmin = -1000
 vmax = 1000
 x_slice = round(fixed.imageArray.shape[0] / 2) - 1
@@ -91,8 +97,10 @@ y_slice = round(fixed.imageArray.shape[1] / 2) - 1
 z_slice = round(fixed.imageArray.shape[2] / 2) - 1
 
 # Plot X-Y field
-u = df.velocity.imageArray[:, :, z_slice, 0]
-v = df.velocity.imageArray[:, :, z_slice, 1]
+u = velocity.imageArray[:, :, z_slice, 0]
+print("velocity shape", u.shape)
+print("image shape", reg.deformed.imageArray.shape)
+v = velocity.imageArray[:, :, z_slice, 1]
 u[0,0] = 1
 ax[0, 0].imshow(reg.deformed.imageArray[:, :, z_slice].T[::1, ::1], cmap='gray', origin='upper', vmin=vmin, vmax=vmax)
 ax[0, 0].quiver(u.T[::1, ::1], v.T[::1, ::1], alpha=0.2, color='red', angles='xy', scale_units='xy', scale=1)
@@ -106,8 +114,8 @@ ax[0, 2].set_xlabel('x')
 ax[0, 2].set_ylabel('y')
 
 # Plot X-Z field
-compX = df.velocity.imageArray[:, y_slice, :, 0]
-compZ = df.velocity.imageArray[:, y_slice, :, 2]
+compX = velocity.imageArray[:, y_slice, :, 0]
+compZ = velocity.imageArray[:, y_slice, :, 2]
 compZ[0,0] = 1
 ax[1, 0].imshow(reg.deformed.imageArray[:, y_slice, :].T[::1, ::1], cmap='gray', origin='upper', vmin=vmin, vmax=vmax)
 ax[1, 0].quiver(compX.T[::1, ::1], compZ.T[::1, ::1], alpha=0.2, color='red', angles='xy', scale_units='xy', scale=1)
@@ -121,8 +129,8 @@ ax[1, 2].set_xlabel('x')
 ax[1, 2].set_ylabel('z')
 
 # Plot Y-Z field
-compY = df.velocity.imageArray[x_slice, :, :, 1]
-compZ = df.velocity.imageArray[x_slice, :, :, 2]
+compY = velocity.imageArray[x_slice, :, :, 1]
+compZ = velocity.imageArray[x_slice, :, :, 2]
 compZ[0,0] = 1
 ax[2, 0].imshow(reg.deformed.imageArray[x_slice, :, :].T[::1, ::1], cmap='gray', origin='upper', vmin=vmin, vmax=vmax)
 ax[2, 0].quiver(compY.T[::1, ::1], compZ.T[::1, ::1], alpha=0.2, color='red', angles='xy', scale_units='xy', scale=1)
@@ -138,8 +146,9 @@ ax[2, 2].set_ylabel('z')
 ax[0, 0].title.set_text('Deformed image and deformation field')
 ax[0, 1].title.set_text('Difference before registration')
 ax[0, 2].title.set_text('Difference after registration')
+fig.subplots_adjust(wspace=0.45, hspace=0.35)
 
-plt.savefig(os.path.join(output_path, 'Example_Morphons.png'))
+plt.savefig(os.path.join(output_path, 'Example_Morphons.png'), bbox_inches='tight')
 
 print('Morphons example completed')
 plt.show()

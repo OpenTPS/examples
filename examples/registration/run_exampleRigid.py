@@ -30,8 +30,8 @@ import os
 #import the needed opentps.core packages
 
 from opentps.core.processing.registration.registrationRigid import RegistrationRigid
-from opentps.core.processing.imageProcessing.resampler3D import resampleImage3DOnImage3D
-from opentps.core.processing.imageProcessing.imageTransform3D import rotateData, translateData
+from opentps.core.processing.imageProcessing.resampler3D import resampleOn
+from opentps.core.processing.imageProcessing.imageTransform3D import rotate, translate
 from opentps.core.data.images import CTImage
 from opentps.core.data.images import ROIMask
 
@@ -89,8 +89,8 @@ moving = copy.copy(fixed)
 translation = np.array([15, 0, 10])
 rotation = np.array([0, 5, 2])
 
-translateData(moving, translation, outputBox='same')
-rotateData(moving, rotation, outputBox='same')
+moving = translate(moving, translation, outputBox='same')
+moving = rotate(moving, rotation, outputBox='same')
 
 #%%
 # Perform the Rigid registration
@@ -98,19 +98,19 @@ rotateData(moving, rotation, outputBox='same')
 
 start_time = time.time()
 reg = RegistrationRigid(fixed, moving)
-transform = reg.compute()
+transform = reg.compute().transform
 
 processing_time = time.time() - start_time
 print('Registration processing time was', processing_time, '\n')
-print('Translation', transform.getTranslation())
-print('Rotation in deg', transform.getRotationAngles(inDegrees=True), '\n')
+print('Translation', transform.translation)
+print('Rotation in deg', transform.eulerAngles, '\n')
 
 ## Two ways of getting the deformed moving image
 deformedImage = reg.deformed
 # deformedImage = transform.deformImage(moving)
 
 ## Resample it to the same grid as the fixed image
-resampledOnFixedGrid = resampleImage3DOnImage3D(deformedImage, fixedImage=fixed, fillValue=-1000)
+resampledOnFixedGrid = resampleOn(deformedImage, target=fixed, fillValue=-1000)
 
 #%%
 # Compute the difference between the 2 images and check results of the registration
@@ -131,7 +131,7 @@ assert diff_before_sum - diff_after_sum > 0, f"Image difference is larger after 
 #Plot results
 #-------------
 y_slice = 95
-fig, ax = plt.subplots(2, 3)
+fig, ax = plt.subplots(2, 3, figsize=(14, 8), layout='constrained')
 ax[0, 0].imshow(fixed.imageArray[:, y_slice, :])
 ax[0, 0].set_title('Fixed')
 ax[0, 0].set_xlabel('Origin: '+f'{fixed.origin[0]}'+','+f'{fixed.origin[1]}'+','+f'{fixed.origin[2]}')
@@ -150,7 +150,7 @@ ax[1, 1].set_xlabel('Origin: ' + f'{resampledOnFixedGrid.origin[0]:.1f}' + ',' +
 diffAft = ax[1, 2].imshow(diff_after.imageArray[:, y_slice, :], vmin=-2000, vmax=2000)
 ax[1, 2].set_title('Diff after')
 fig.colorbar(diffAft, ax=ax[1, 2])
-plt.savefig(os.path.join(output_path, 'Example_Registration.png'))
+plt.savefig(os.path.join(output_path, 'Example_Registration.png'), bbox_inches='tight')
 
 print('Rigid registration example completed')
 plt.show()
